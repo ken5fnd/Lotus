@@ -1,4 +1,7 @@
-#include "stdint.h"
+#include <stdint.h>
+
+#ifndef __parameters_H
+#define __parameters_H
 
 typedef struct robot_parameter_{
     float weight;//重量(g)
@@ -34,3 +37,5 @@ typedef struct attack_parameters_{
     turn_parameter turn_135_O;//出口135度ターン
     turn_parameter turn_v90;//斜め90度ターン
 }attack_parameters;
+
+#endif
