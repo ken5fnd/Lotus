@@ -3,6 +3,8 @@
 #ifndef __parameters_H
 #define __parameters_H
 
+#define ADC_BUFFER_NUM 5 //AD変換の個数
+
 typedef struct robot_parameter_{
     float weight;//重量(g)
     float gear_rathio;//ギア比

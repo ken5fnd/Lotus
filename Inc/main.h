@@ -68,6 +68,8 @@ void Error_Handler(void);
 #define LED_R_B_GPIO_Port GPIOH
 #define IRLED_RSLF_Pin GPIO_PIN_2
 #define IRLED_RSLF_GPIO_Port GPIOA
+#define V_BATT_Pin GPIO_PIN_3
+#define V_BATT_GPIO_Port GPIOA
 #define SEN_RF_Pin GPIO_PIN_6
 #define SEN_RF_GPIO_Port GPIOA
 #define SEN_RS_Pin GPIO_PIN_7

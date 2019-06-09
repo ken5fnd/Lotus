@@ -1,0 +1,469 @@
+ARM GAS  /tmp/ccBeS4LU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"interface.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.interface_LED,"ax",%progbits
+  18              		.align	1
+  19              		.p2align 2,,3
+  20              		.global	interface_LED
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	interface_LED:
+  27              	.LFB130:
+  28              		.file 1 "Src/hardware/interface.c"
+   1:Src/hardware/interface.c **** #include "tim.h"
+   2:Src/hardware/interface.c **** #include "gpio.h"
+   3:Src/hardware/interface.c **** #include "hardware/interface.h"
+   4:Src/hardware/interface.c **** #include "stm32f4xx_hal.h"
+   5:Src/hardware/interface.c **** #include <math.h>
+   6:Src/hardware/interface.c **** #include <stdlib.h>
+   7:Src/hardware/interface.c **** 
+   8:Src/hardware/interface.c **** void interface_LED(uint8_t _LED_R, uint8_t _LED_L)
+   9:Src/hardware/interface.c **** {
+  29              		.loc 1 9 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 24
+  37              		.cfi_offset 3, -24
+  38              		.cfi_offset 4, -20
+  39              		.cfi_offset 5, -16
+  40              		.cfi_offset 6, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  10:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_R_GPIO_Port, LED_R_R_Pin, !(_LED_R & 0x01));      //LED_R_R
+  43              		.loc 1 10 0
+  44 0002 1C4F     		ldr	r7, .L4
+  11:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_G_GPIO_Port, LED_R_G_Pin, !((_LED_R & 0x02) >> 1)); //LED_R_G
+  12:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_B_GPIO_Port, LED_R_B_Pin, !((_LED_R & 0x04) >> 2)); //LED_R_B
+  13:Src/hardware/interface.c **** 
+  14:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_L_R_GPIO_Port, LED_L_R_Pin, !(_LED_L & 0x01));      //LED_L_R
+ARM GAS  /tmp/ccBeS4LU.s 			page 2
+
+
+  45              		.loc 1 14 0
+  46 0004 1C4E     		ldr	r6, .L4+4
+  10:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_R_GPIO_Port, LED_R_R_Pin, !(_LED_R & 0x01));      //LED_R_R
+  47              		.loc 1 10 0
+  48 0006 C243     		mvns	r2, r0
+   9:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_R_GPIO_Port, LED_R_R_Pin, !(_LED_R & 0x01));      //LED_R_R
+  49              		.loc 1 9 0
+  50 0008 0C46     		mov	r4, r1
+  51 000a 0546     		mov	r5, r0
+  10:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_R_GPIO_Port, LED_R_R_Pin, !(_LED_R & 0x01));      //LED_R_R
+  52              		.loc 1 10 0
+  53 000c 02F00102 		and	r2, r2, #1
+  54 0010 3846     		mov	r0, r7
+  55              	.LVL1:
+  56 0012 4FF48041 		mov	r1, #16384
+  57              	.LVL2:
+  58 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  59              	.LVL3:
+  11:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_R_G_GPIO_Port, LED_R_G_Pin, !((_LED_R & 0x02) >> 1)); //LED_R_G
+  60              		.loc 1 11 0
+  61 001a 85F00202 		eor	r2, r5, #2
+  62 001e 3846     		mov	r0, r7
+  63 0020 C2F34002 		ubfx	r2, r2, #1, #1
+  64 0024 4FF40041 		mov	r1, #32768
+  65 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  66              	.LVL4:
+  12:Src/hardware/interface.c **** 
+  67              		.loc 1 12 0
+  68 002c 85F00402 		eor	r2, r5, #4
+  69 0030 C2F38002 		ubfx	r2, r2, #2, #1
+  70 0034 0121     		movs	r1, #1
+  71 0036 1148     		ldr	r0, .L4+8
+  72 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  73              	.LVL5:
+  74              		.loc 1 14 0
+  75 003c E243     		mvns	r2, r4
+  76 003e 3046     		mov	r0, r6
+  77 0040 02F00102 		and	r2, r2, #1
+  78 0044 4FF40051 		mov	r1, #8192
+  79 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  80              	.LVL6:
+  15:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_L_G_GPIO_Port, LED_L_G_Pin, !((_LED_L & 0x02) >> 1)); //LED_R_G
+  81              		.loc 1 15 0
+  82 004c 84F00202 		eor	r2, r4, #2
+  83 0050 3046     		mov	r0, r6
+  84 0052 C2F34002 		ubfx	r2, r2, #1, #1
+  85 0056 4FF48041 		mov	r1, #16384
+  86 005a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  87              	.LVL7:
+  16:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_L_B_GPIO_Port, LED_L_B_Pin, !((_LED_L & 0x04) >> 2)); //LED_L_B
+  88              		.loc 1 16 0
+  89 005e 84F00402 		eor	r2, r4, #4
+  90 0062 3046     		mov	r0, r6
+  91 0064 C2F38002 		ubfx	r2, r2, #2, #1
+  92 0068 4FF40041 		mov	r1, #32768
+  17:Src/hardware/interface.c **** }
+  93              		.loc 1 17 0
+ARM GAS  /tmp/ccBeS4LU.s 			page 3
+
+
+  94 006c BDE8F840 		pop	{r3, r4, r5, r6, r7, lr}
+  95              	.LCFI1:
+  96              		.cfi_restore 14
+  97              		.cfi_restore 7
+  98              		.cfi_restore 6
+  99              		.cfi_restore 5
+ 100              		.cfi_restore 4
+ 101              		.cfi_restore 3
+ 102              		.cfi_def_cfa_offset 0
+  16:Src/hardware/interface.c ****     HAL_GPIO_WritePin(LED_L_B_GPIO_Port, LED_L_B_Pin, !((_LED_L & 0x04) >> 2)); //LED_L_B
+ 103              		.loc 1 16 0
+ 104 0070 FFF7FEBF 		b	HAL_GPIO_WritePin
+ 105              	.LVL8:
+ 106              	.L5:
+ 107              		.align	2
+ 108              	.L4:
+ 109 0074 00080240 		.word	1073874944
+ 110 0078 00040240 		.word	1073873920
+ 111 007c 001C0240 		.word	1073880064
+ 112              		.cfi_endproc
+ 113              	.LFE130:
+ 115              		.section	.text.Speaker_ON,"ax",%progbits
+ 116              		.align	1
+ 117              		.p2align 2,,3
+ 118              		.global	Speaker_ON
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.fpu fpv4-sp-d16
+ 124              	Speaker_ON:
+ 125              	.LFB131:
+  18:Src/hardware/interface.c **** 
+  19:Src/hardware/interface.c **** void Speaker_ON()
+  20:Src/hardware/interface.c **** {
+ 126              		.loc 1 20 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 08B5     		push	{r3, lr}
+ 131              	.LCFI2:
+ 132              		.cfi_def_cfa_offset 8
+ 133              		.cfi_offset 3, -8
+ 134              		.cfi_offset 14, -4
+  21:Src/hardware/interface.c ****     if (HAL_TIM_PWM_Start(&htim11, TIM_CHANNEL_1) != HAL_OK)
+ 135              		.loc 1 21 0
+ 136 0002 0021     		movs	r1, #0
+ 137 0004 0448     		ldr	r0, .L10
+ 138 0006 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 139              	.LVL9:
+ 140 000a 00B9     		cbnz	r0, .L9
+  22:Src/hardware/interface.c ****     {
+  23:Src/hardware/interface.c ****         Error_Handler();
+  24:Src/hardware/interface.c ****     }
+  25:Src/hardware/interface.c **** }
+ 141              		.loc 1 25 0
+ 142 000c 08BD     		pop	{r3, pc}
+ 143              	.L9:
+ARM GAS  /tmp/ccBeS4LU.s 			page 4
+
+
+ 144 000e BDE80840 		pop	{r3, lr}
+ 145              	.LCFI3:
+ 146              		.cfi_restore 14
+ 147              		.cfi_restore 3
+ 148              		.cfi_def_cfa_offset 0
+  23:Src/hardware/interface.c ****     }
+ 149              		.loc 1 23 0
+ 150 0012 FFF7FEBF 		b	Error_Handler
+ 151              	.LVL10:
+ 152              	.L11:
+ 153 0016 00BF     		.align	2
+ 154              	.L10:
+ 155 0018 00000000 		.word	htim11
+ 156              		.cfi_endproc
+ 157              	.LFE131:
+ 159              		.section	.text.Speaker_Hz,"ax",%progbits
+ 160              		.align	1
+ 161              		.p2align 2,,3
+ 162              		.global	Speaker_Hz
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.fpu fpv4-sp-d16
+ 168              	Speaker_Hz:
+ 169              	.LFB132:
+  26:Src/hardware/interface.c **** 
+  27:Src/hardware/interface.c **** void Speaker_Hz(unsigned short _Hz)
+  28:Src/hardware/interface.c **** {
+ 170              		.loc 1 28 0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 175              	.LVL11:
+  29:Src/hardware/interface.c ****     __HAL_TIM_PRESCALER(&htim11, 1000000 / _Hz);
+ 176              		.loc 1 29 0
+ 177 0000 044A     		ldr	r2, .L13
+ 178 0002 054B     		ldr	r3, .L13+4
+ 179 0004 1268     		ldr	r2, [r2]
+ 180 0006 93FBF0F0 		sdiv	r0, r3, r0
+ 181              	.LVL12:
+  30:Src/hardware/interface.c ****     __HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1, 23);
+ 182              		.loc 1 30 0
+ 183 000a 1723     		movs	r3, #23
+  29:Src/hardware/interface.c ****     __HAL_TIM_PRESCALER(&htim11, 1000000 / _Hz);
+ 184              		.loc 1 29 0
+ 185 000c 9062     		str	r0, [r2, #40]
+ 186              		.loc 1 30 0
+ 187 000e 5363     		str	r3, [r2, #52]
+  31:Src/hardware/interface.c **** }
+ 188              		.loc 1 31 0
+ 189 0010 7047     		bx	lr
+ 190              	.L14:
+ 191 0012 00BF     		.align	2
+ 192              	.L13:
+ 193 0014 00000000 		.word	htim11
+ 194 0018 40420F00 		.word	1000000
+ARM GAS  /tmp/ccBeS4LU.s 			page 5
+
+
+ 195              		.cfi_endproc
+ 196              	.LFE132:
+ 198              		.section	.text.Speaker_OFF,"ax",%progbits
+ 199              		.align	1
+ 200              		.p2align 2,,3
+ 201              		.global	Speaker_OFF
+ 202              		.syntax unified
+ 203              		.thumb
+ 204              		.thumb_func
+ 205              		.fpu fpv4-sp-d16
+ 207              	Speaker_OFF:
+ 208              	.LFB133:
+  32:Src/hardware/interface.c **** 
+  33:Src/hardware/interface.c **** void Speaker_OFF()
+  34:Src/hardware/interface.c **** {
+ 209              		.loc 1 34 0
+ 210              		.cfi_startproc
+ 211              		@ args = 0, pretend = 0, frame = 0
+ 212              		@ frame_needed = 0, uses_anonymous_args = 0
+ 213 0000 08B5     		push	{r3, lr}
+ 214              	.LCFI4:
+ 215              		.cfi_def_cfa_offset 8
+ 216              		.cfi_offset 3, -8
+ 217              		.cfi_offset 14, -4
+  35:Src/hardware/interface.c ****     if (HAL_TIM_PWM_Stop(&htim11, TIM_CHANNEL_1) != HAL_OK)
+ 218              		.loc 1 35 0
+ 219 0002 0021     		movs	r1, #0
+ 220 0004 0448     		ldr	r0, .L19
+ 221 0006 FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 222              	.LVL13:
+ 223 000a 00B9     		cbnz	r0, .L18
+  36:Src/hardware/interface.c ****     {
+  37:Src/hardware/interface.c ****         Error_Handler();
+  38:Src/hardware/interface.c ****     }
+  39:Src/hardware/interface.c **** }
+ 224              		.loc 1 39 0
+ 225 000c 08BD     		pop	{r3, pc}
+ 226              	.L18:
+ 227 000e BDE80840 		pop	{r3, lr}
+ 228              	.LCFI5:
+ 229              		.cfi_restore 14
+ 230              		.cfi_restore 3
+ 231              		.cfi_def_cfa_offset 0
+  37:Src/hardware/interface.c ****     }
+ 232              		.loc 1 37 0
+ 233 0012 FFF7FEBF 		b	Error_Handler
+ 234              	.LVL14:
+ 235              	.L20:
+ 236 0016 00BF     		.align	2
+ 237              	.L19:
+ 238 0018 00000000 		.word	htim11
+ 239              		.cfi_endproc
+ 240              	.LFE133:
+ 242              		.section	.text.Speaker_Scale,"ax",%progbits
+ 243              		.align	1
+ 244              		.p2align 2,,3
+ 245              		.global	Speaker_Scale
+ARM GAS  /tmp/ccBeS4LU.s 			page 6
+
+
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 249              		.fpu fpv4-sp-d16
+ 251              	Speaker_Scale:
+ 252              	.LFB134:
+  40:Src/hardware/interface.c **** 
+  41:Src/hardware/interface.c **** void Speaker_Scale(uint16_t _Hz, uint8_t _time)
+  42:Src/hardware/interface.c **** {
+ 253              		.loc 1 42 0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              	.LVL15:
+ 258 0000 70B5     		push	{r4, r5, r6, lr}
+ 259              	.LCFI6:
+ 260              		.cfi_def_cfa_offset 16
+ 261              		.cfi_offset 4, -16
+ 262              		.cfi_offset 5, -12
+ 263              		.cfi_offset 6, -8
+ 264              		.cfi_offset 14, -4
+ 265              		.loc 1 42 0
+ 266 0002 0646     		mov	r6, r0
+ 267 0004 0D46     		mov	r5, r1
+ 268              	.LBB10:
+ 269              	.LBB11:
+  21:Src/hardware/interface.c ****     {
+ 270              		.loc 1 21 0
+ 271 0006 0E48     		ldr	r0, .L29
+ 272              	.LVL16:
+ 273 0008 0021     		movs	r1, #0
+ 274              	.LVL17:
+ 275 000a FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 276              	.LVL18:
+ 277 000e 08B1     		cbz	r0, .L22
+  23:Src/hardware/interface.c ****     }
+ 278              		.loc 1 23 0
+ 279 0010 FFF7FEFF 		bl	Error_Handler
+ 280              	.LVL19:
+ 281              	.L22:
+ 282              	.LBE11:
+ 283              	.LBE10:
+ 284              	.LBB12:
+ 285              	.LBB13:
+  29:Src/hardware/interface.c ****     __HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1, 23);
+ 286              		.loc 1 29 0
+ 287 0014 0A4C     		ldr	r4, .L29
+ 288 0016 0B4B     		ldr	r3, .L29+4
+ 289 0018 2268     		ldr	r2, [r4]
+ 290 001a 93FBF6F3 		sdiv	r3, r3, r6
+  30:Src/hardware/interface.c **** }
+ 291              		.loc 1 30 0
+ 292 001e 1721     		movs	r1, #23
+ 293              	.LBE13:
+ 294              	.LBE12:
+  43:Src/hardware/interface.c ****     Speaker_ON();
+  44:Src/hardware/interface.c ****     Speaker_Hz(_Hz);
+ARM GAS  /tmp/ccBeS4LU.s 			page 7
+
+
+  45:Src/hardware/interface.c ****     HAL_Delay(_time);
+ 295              		.loc 1 45 0
+ 296 0020 2846     		mov	r0, r5
+ 297              	.LBB15:
+ 298              	.LBB14:
+  29:Src/hardware/interface.c ****     __HAL_TIM_SetCompare(&htim11, TIM_CHANNEL_1, 23);
+ 299              		.loc 1 29 0
+ 300 0022 9362     		str	r3, [r2, #40]
+  30:Src/hardware/interface.c **** }
+ 301              		.loc 1 30 0
+ 302 0024 5163     		str	r1, [r2, #52]
+ 303              	.LVL20:
+ 304              	.LBE14:
+ 305              	.LBE15:
+ 306              		.loc 1 45 0
+ 307 0026 FFF7FEFF 		bl	HAL_Delay
+ 308              	.LVL21:
+ 309              	.LBB16:
+ 310              	.LBB17:
+  35:Src/hardware/interface.c ****     {
+ 311              		.loc 1 35 0
+ 312 002a 2046     		mov	r0, r4
+ 313 002c 0021     		movs	r1, #0
+ 314 002e FFF7FEFF 		bl	HAL_TIM_PWM_Stop
+ 315              	.LVL22:
+ 316 0032 00B9     		cbnz	r0, .L28
+ 317              	.LBE17:
+ 318              	.LBE16:
+  46:Src/hardware/interface.c ****     Speaker_OFF();
+  47:Src/hardware/interface.c **** }...
+ 319              		.loc 1 47 0
+ 320 0034 70BD     		pop	{r4, r5, r6, pc}
+ 321              	.L28:
+ 322 0036 BDE87040 		pop	{r4, r5, r6, lr}
+ 323              	.LCFI7:
+ 324              		.cfi_restore 14
+ 325              		.cfi_restore 6
+ 326              		.cfi_restore 5
+ 327              		.cfi_restore 4
+ 328              		.cfi_def_cfa_offset 0
+ 329              	.LBB19:
+ 330              	.LBB18:
+  37:Src/hardware/interface.c ****         Error_Handler();
+ 331              		.loc 1 37 0
+ 332 003a FFF7FEBF 		b	Error_Handler
+ 333              	.LVL23:
+ 334              	.L30:
+ 335 003e 00BF     		.align	2
+ 336              	.L29:
+ 337 0040 00000000 		.word	htim11
+ 338 0044 40420F00 		.word	1000000
+ 339              	.LBE18:
+ 340              	.LBE19:
+ 341              		.cfi_endproc
+ 342              	.LFE134:
+ 344              		.text
+ 345              	.Letext0:
+ARM GAS  /tmp/ccBeS4LU.s 			page 8
+
+
+ 346              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 347              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 348              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 349              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 350              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f413xx.h"
+ 351              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 352              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 353              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 354              		.file 10 "Inc/tim.h"
+ 355              		.file 11 "/usr/arm-none-eabi/include/sys/lock.h"
+ 356              		.file 12 "/usr/arm-none-eabi/include/sys/_types.h"
+ 357              		.file 13 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 358              		.file 14 "/usr/arm-none-eabi/include/sys/reent.h"
+ 359              		.file 15 "/usr/arm-none-eabi/include/math.h"
+ 360              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
+ 361              		.file 17 "Inc/main.h"
+ 362              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 363              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  /tmp/ccBeS4LU.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 interface.c
+     /tmp/ccBeS4LU.s:18     .text.interface_LED:0000000000000000 $t
+     /tmp/ccBeS4LU.s:26     .text.interface_LED:0000000000000000 interface_LED
+     /tmp/ccBeS4LU.s:109    .text.interface_LED:0000000000000074 $d
+     /tmp/ccBeS4LU.s:116    .text.Speaker_ON:0000000000000000 $t
+     /tmp/ccBeS4LU.s:124    .text.Speaker_ON:0000000000000000 Speaker_ON
+     /tmp/ccBeS4LU.s:155    .text.Speaker_ON:0000000000000018 $d
+     /tmp/ccBeS4LU.s:160    .text.Speaker_Hz:0000000000000000 $t
+     /tmp/ccBeS4LU.s:168    .text.Speaker_Hz:0000000000000000 Speaker_Hz
+     /tmp/ccBeS4LU.s:193    .text.Speaker_Hz:0000000000000014 $d
+     /tmp/ccBeS4LU.s:199    .text.Speaker_OFF:0000000000000000 $t
+     /tmp/ccBeS4LU.s:207    .text.Speaker_OFF:0000000000000000 Speaker_OFF
+     /tmp/ccBeS4LU.s:238    .text.Speaker_OFF:0000000000000018 $d
+     /tmp/ccBeS4LU.s:243    .text.Speaker_Scale:0000000000000000 $t
+     /tmp/ccBeS4LU.s:251    .text.Speaker_Scale:0000000000000000 Speaker_Scale
+     /tmp/ccBeS4LU.s:337    .text.Speaker_Scale:0000000000000040 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_TIM_PWM_Start
+Error_Handler
+htim11
+HAL_TIM_PWM_Stop
+HAL_Delay

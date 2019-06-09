@@ -30,6 +30,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdint.h>
+#include <stdio.h>
 #include "hardware/interface.h"
 /* USER CODE END Includes */
 
@@ -59,7 +60,9 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+void __io_putchar(uint8_t ch) {
+	HAL_UART_Transmit(&huart1, &ch, 1, 1);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -76,6 +79,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
+  
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -102,19 +106,31 @@ int main(void)
   MX_TIM11_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  setbuf(stdout, NULL);
+  printf("hello! %f\n", 0.1);
+  Speaker_ON();
+  Speaker_Hz(1047);
+  HAL_Delay(100);
+  Speaker_Hz(2093);
+  HAL_Delay(500);
+  Speaker_OFF();
+  interface_LED(GREEN, GREEN);
+  HAL_Delay(500);
+  interface_LED(OFF, OFF);
+  HAL_Delay(50);
+  interface_LED(GREEN, GREEN);
+  HAL_Delay(50);
+  interface_LED(OFF, OFF);
+  HAL_Delay(50);
+  interface_LED(GREEN, GREEN);
+  HAL_Delay(500);
+  interface_LED(OFF, OFF);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    interface_LED(RED, RED);
-    HAL_Delay(500);
-    interface_LED(GREEN, GREEN);
-    HAL_Delay(500);
-    interface_LED(BLUE, BLUE);
-    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -143,7 +159,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 92;
+  RCC_OscInitStruct.PLL.PLLN = 100;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
@@ -153,7 +169,8 @@ void SystemClock_Config(void)
   }
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -183,7 +200,7 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef USE_FULL_ASSERT
+#ifdef  USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -192,7 +209,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{
+{ 
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

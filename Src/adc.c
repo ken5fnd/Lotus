@@ -37,13 +37,13 @@ void MX_ADC1_Init(void)
   hadc1.Instance = ADC1;
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ScanConvMode = ENABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.NbrOfConversion = 5;
   hadc1.Init.DMAContinuousRequests = DISABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
@@ -52,9 +52,41 @@ void MX_ADC1_Init(void)
   }
   /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
   */
-  sConfig.Channel = ADC_CHANNEL_9;
+  sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  */
+  sConfig.Channel = ADC_CHANNEL_7;
+  sConfig.Rank = 2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  */
+  sConfig.Channel = ADC_CHANNEL_8;
+  sConfig.Rank = 3;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  */
+  sConfig.Channel = ADC_CHANNEL_9;
+  sConfig.Rank = 4;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+  */
+  sConfig.Channel = ADC_CHANNEL_3;
+  sConfig.Rank = 5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -77,12 +109,13 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     /**ADC1 GPIO Configuration    
+    PA3     ------> ADC1_IN3
     PA6     ------> ADC1_IN6
     PA7     ------> ADC1_IN7
     PB0     ------> ADC1_IN8
     PB1     ------> ADC1_IN9 
     */
-    GPIO_InitStruct.Pin = SEN_RF_Pin|SEN_RS_Pin;
+    GPIO_InitStruct.Pin = V_BATT_Pin|SEN_RF_Pin|SEN_RS_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -101,7 +134,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     hdma_adc1.Init.MemInc = DMA_MINC_ENABLE;
     hdma_adc1.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
     hdma_adc1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
-    hdma_adc1.Init.Mode = DMA_NORMAL;
+    hdma_adc1.Init.Mode = DMA_CIRCULAR;
     hdma_adc1.Init.Priority = DMA_PRIORITY_HIGH;
     hdma_adc1.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
     if (HAL_DMA_Init(&hdma_adc1) != HAL_OK)
@@ -129,12 +162,13 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_ADC1_CLK_DISABLE();
   
     /**ADC1 GPIO Configuration    
+    PA3     ------> ADC1_IN3
     PA6     ------> ADC1_IN6
     PA7     ------> ADC1_IN7
     PB0     ------> ADC1_IN8
     PB1     ------> ADC1_IN9 
     */
-    HAL_GPIO_DeInit(GPIOA, SEN_RF_Pin|SEN_RS_Pin);
+    HAL_GPIO_DeInit(GPIOA, V_BATT_Pin|SEN_RF_Pin|SEN_RS_Pin);
 
     HAL_GPIO_DeInit(GPIOB, SEN_LS_Pin|SEN_LF_Pin);
 
@@ -147,7 +181,13 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 } 
 
 /* USER CODE BEGIN 1 */
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
 
+	IR_Sen_raw.RS = ADC_Buffer[2];
+	IR_Sen_raw.LS = ADC_Buffer[0];
+
+	V_Batt = (float) ADC_Buffer[1] * 3.3 / 0.357 / 4095.0;
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
