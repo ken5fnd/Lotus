@@ -1,0 +1,147 @@
+ARM GAS  /tmp/ccgFHCNR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"init.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.init_val,"ax",%progbits
+  18              		.align	1
+  19              		.p2align 2,,3
+  20              		.global	init_val
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	init_val:
+  27              	.LFB130:
+  28              		.file 1 "Src/hardware/init.c"
+   1:Src/hardware/init.c **** #include "adc.h"
+   2:Src/hardware/init.c **** #include "tim.h"
+   3:Src/hardware/init.c **** #include "stm32f4xx_hal_def.h"
+   4:Src/hardware/init.c **** #include "hardware/global.h"
+   5:Src/hardware/init.c **** #include "hardware/parameters.h"
+   6:Src/hardware/init.c **** #include "hardware/sensors.h"
+   7:Src/hardware/init.c **** 
+   8:Src/hardware/init.c **** void init_val() {
+  29              		.loc 1 8 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   9:Src/hardware/init.c ****    
+  10:Src/hardware/init.c **** }
+  34              		.loc 1 10 0
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE130:
+  39 0002 00BF     		.section	.text.start_peripherals,"ax",%progbits
+  40              		.align	1
+  41              		.p2align 2,,3
+  42              		.global	start_peripherals
+  43              		.syntax unified
+  44              		.thumb
+  45              		.thumb_func
+  46              		.fpu fpv4-sp-d16
+  48              	start_peripherals:
+  49              	.LFB131:
+  11:Src/hardware/init.c **** 
+ARM GAS  /tmp/ccgFHCNR.s 			page 2
+
+
+  12:Src/hardware/init.c **** void start_peripherals(){
+  50              		.loc 1 12 0
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54 0000 08B5     		push	{r3, lr}
+  55              	.LCFI0:
+  56              		.cfi_def_cfa_offset 8
+  57              		.cfi_offset 3, -8
+  58              		.cfi_offset 14, -4
+  13:Src/hardware/init.c ****     /*Gyro*/
+  14:Src/hardware/init.c ****     init_gyro();
+  59              		.loc 1 14 0
+  60 0002 FFF7FEFF 		bl	init_gyro
+  61              	.LVL0:
+  15:Src/hardware/init.c ****     /*ADC*/
+  16:Src/hardware/init.c ****     HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADC_Buffer, ADC_BUFFER_NUM);
+  62              		.loc 1 16 0
+  63 0006 0522     		movs	r2, #5
+  64 0008 0449     		ldr	r1, .L5
+  65 000a 0548     		ldr	r0, .L5+4
+  66 000c FFF7FEFF 		bl	HAL_ADC_Start_DMA
+  67              	.LVL1:
+  17:Src/hardware/init.c ****     /*TIM*/
+  18:Src/hardware/init.c ****     HAL_TIM_Base_Start_IT(&htim6);
+  68              		.loc 1 18 0
+  69 0010 0448     		ldr	r0, .L5+8
+  19:Src/hardware/init.c **** }...
+  70              		.loc 1 19 0
+  71 0012 BDE80840 		pop	{r3, lr}
+  72              	.LCFI1:
+  73              		.cfi_restore 14
+  74              		.cfi_restore 3
+  75              		.cfi_def_cfa_offset 0
+  18:Src/hardware/init.c ****     HAL_TIM_Base_Start_IT(&htim6);
+  76              		.loc 1 18 0
+  77 0016 FFF7FEBF 		b	HAL_TIM_Base_Start_IT
+  78              	.LVL2:
+  79              	.L6:
+  80 001a 00BF     		.align	2
+  81              	.L5:
+  82 001c 00000000 		.word	ADC_Buffer
+  83 0020 00000000 		.word	hadc1
+  84 0024 00000000 		.word	htim6
+  85              		.cfi_endproc
+  86              	.LFE131:
+  88              		.text
+  89              	.Letext0:
+  90              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  91              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  92              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+  93              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+  94              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f413xx.h"
+  95              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+  96              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+  97              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+  98              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
+ARM GAS  /tmp/ccgFHCNR.s 			page 3
+
+
+  99              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 100              		.file 12 "Inc/adc.h"
+ 101              		.file 13 "Inc/tim.h"
+ 102              		.file 14 "Inc/hardware/parameters.h"
+ 103              		.file 15 "Inc/hardware/global.h"
+ 104              		.file 16 "Inc/hardware/sensors.h"
+ARM GAS  /tmp/ccgFHCNR.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 init.c
+     /tmp/ccgFHCNR.s:18     .text.init_val:0000000000000000 $t
+     /tmp/ccgFHCNR.s:26     .text.init_val:0000000000000000 init_val
+     /tmp/ccgFHCNR.s:40     .text.start_peripherals:0000000000000000 $t
+     /tmp/ccgFHCNR.s:48     .text.start_peripherals:0000000000000000 start_peripherals
+     /tmp/ccgFHCNR.s:82     .text.start_peripherals:000000000000001c $d
+
+UNDEFINED SYMBOLS
+init_gyro
+HAL_ADC_Start_DMA
+HAL_TIM_Base_Start_IT
+ADC_Buffer
+hadc1
+htim6

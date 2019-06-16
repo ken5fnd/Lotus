@@ -1,5 +1,5 @@
-build/interface.d: Src/hardware/interface.c Inc/tim.h Inc/main.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+build/interface.d: Src/hardware/interface.c Inc/hardware/interface.h \
+ Inc/gpio.h Inc/main.h Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -27,10 +27,11 @@ build/interface.d: Src/hardware/interface.c Inc/tim.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/gpio.h \
- Inc/hardware/interface.h
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/tim.h
 
-Inc/tim.h:
+Inc/hardware/interface.h:
+
+Inc/gpio.h:
 
 Inc/main.h:
 
@@ -96,6 +97,4 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-Inc/gpio.h:
-
-Inc/hardware/interface.h:
+Inc/tim.h:

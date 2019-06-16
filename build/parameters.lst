@@ -1,0 +1,49 @@
+ARM GAS  /tmp/ccv4E9HQ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"parameters.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.comm	gain_wall_F_L,12,4
+  18              		.comm	gain_wall_F_R,12,4
+  19              		.comm	gain_wall_S_d,12,4
+  20              		.comm	gain_wall_S,12,4
+  21              		.comm	gain_deg,12,4
+  22              		.comm	gain_avel,12,4
+  23              		.comm	gain_dis,12,4
+  24              		.comm	gain_vel,12,4
+  25              		.comm	robot_parameters,24,4
+  26              	.Letext0:
+  27              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  28              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  29              		.file 3 "Inc/hardware/parameters.h"
+  30              		.file 4 "Src/hardware/parameters.c"
+ARM GAS  /tmp/ccv4E9HQ.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 parameters.c
+                            *COM*:000000000000000c gain_wall_F_L
+                            *COM*:000000000000000c gain_wall_F_R
+                            *COM*:000000000000000c gain_wall_S_d
+                            *COM*:000000000000000c gain_wall_S
+                            *COM*:000000000000000c gain_deg
+                            *COM*:000000000000000c gain_avel
+                            *COM*:000000000000000c gain_dis
+                            *COM*:000000000000000c gain_vel
+                            *COM*:0000000000000018 robot_parameters
+
+NO UNDEFINED SYMBOLS

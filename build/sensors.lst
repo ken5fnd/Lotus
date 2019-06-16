@@ -1,0 +1,1407 @@
+ARM GAS  /tmp/cc2KF724.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sensors.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.gyro_rw,"ax",%progbits
+  18              		.align	1
+  19              		.p2align 2,,3
+  20              		.global	gyro_rw
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	gyro_rw:
+  27              	.LFB133:
+  28              		.file 1 "Src/hardware/sensors.c"
+   1:Src/hardware/sensors.c **** #include "gpio.h"
+   2:Src/hardware/sensors.c **** #include "hardware/global.h"
+   3:Src/hardware/sensors.c **** #include "hardware/parameters.h"
+   4:Src/hardware/sensors.c **** #include "spi.h"
+   5:Src/hardware/sensors.c **** #include "stm32f4xx_hal.h"
+   6:Src/hardware/sensors.c **** #include <stdint.h>
+   7:Src/hardware/sensors.c **** #include <stdio.h>
+   8:Src/hardware/sensors.c **** 
+   9:Src/hardware/sensors.c **** void gyro_rw(uint8_t *_Data_Input, uint8_t *_Data_Output) {
+  29              		.loc 1 9 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 24
+  37              		.cfi_offset 4, -24
+  38              		.cfi_offset 5, -20
+  39              		.cfi_offset 6, -16
+  40              		.cfi_offset 7, -12
+  41              		.cfi_offset 8, -8
+  42              		.cfi_offset 14, -4
+  10:Src/hardware/sensors.c ****     volatile uint8_t dummy;
+  11:Src/hardware/sensors.c ****     hspi1.Init.CLKPolarity = SPI_POLARITY_LOW; // CPOL = 0
+  12:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+  43              		.loc 1 12 0
+  44 0004 1D4D     		ldr	r5, .L4
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+  45              		.loc 1 11 0
+ARM GAS  /tmp/cc2KF724.s 			page 2
+
+
+  46 0006 1E4E     		ldr	r6, .L4+4
+   9:Src/hardware/sensors.c ****     volatile uint8_t dummy;
+  47              		.loc 1 9 0
+  48 0008 84B0     		sub	sp, sp, #16
+  49              	.LCFI1:
+  50              		.cfi_def_cfa_offset 40
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+  51              		.loc 1 11 0
+  52 000a 0023     		movs	r3, #0
+   9:Src/hardware/sensors.c ****     volatile uint8_t dummy;
+  53              		.loc 1 9 0
+  54 000c 0746     		mov	r7, r0
+  55 000e 8846     		mov	r8, r1
+  56              		.loc 1 12 0
+  57 0010 2846     		mov	r0, r5
+  58              	.LVL1:
+  59 0012 1A46     		mov	r2, r3
+  60 0014 4FF48071 		mov	r1, #256
+  61              	.LVL2:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+  62              		.loc 1 11 0
+  63 0018 3361     		str	r3, [r6, #16]
+  64              		.loc 1 12 0
+  65 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  66              	.LVL3:
+  67              	.LBB3:
+  13:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+  14:Src/hardware/sensors.c ****         dummy++;
+  68              		.loc 1 14 0
+  69 001e 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+  70 0022 0133     		adds	r3, r3, #1
+  71 0024 DBB2     		uxtb	r3, r3
+  72 0026 8DF80F30 		strb	r3, [sp, #15]
+  73 002a 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+  74 002e 0133     		adds	r3, r3, #1
+  75 0030 DBB2     		uxtb	r3, r3
+  76 0032 8DF80F30 		strb	r3, [sp, #15]
+  77 0036 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+  78 003a 0133     		adds	r3, r3, #1
+  79 003c DBB2     		uxtb	r3, r3
+  80 003e 8DF80F30 		strb	r3, [sp, #15]
+  81 0042 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+  82 0046 0133     		adds	r3, r3, #1
+  83 0048 DBB2     		uxtb	r3, r3
+  84 004a 8DF80F30 		strb	r3, [sp, #15]
+  85 004e 9DF80F40 		ldrb	r4, [sp, #15]	@ zero_extendqisi2
+  86              	.LBE3:
+  15:Src/hardware/sensors.c ****     }
+  16:Src/hardware/sensors.c ****     HAL_SPI_TransmitReceive(&hspi1, _Data_Input, _Data_Output, 2, 100);
+  87              		.loc 1 16 0
+  88 0052 6423     		movs	r3, #100
+  89              	.LBB4:
+  14:Src/hardware/sensors.c ****     }
+  90              		.loc 1 14 0
+  91 0054 0134     		adds	r4, r4, #1
+  92              	.LBE4:
+  93              		.loc 1 16 0
+ARM GAS  /tmp/cc2KF724.s 			page 3
+
+
+  94 0056 4246     		mov	r2, r8
+  95 0058 3946     		mov	r1, r7
+  96 005a 0093     		str	r3, [sp]
+  97 005c 3046     		mov	r0, r6
+  98              	.LBB5:
+  14:Src/hardware/sensors.c ****     }
+  99              		.loc 1 14 0
+ 100 005e E4B2     		uxtb	r4, r4
+ 101              	.LBE5:
+ 102              		.loc 1 16 0
+ 103 0060 0223     		movs	r3, #2
+ 104              	.LBB6:
+  14:Src/hardware/sensors.c ****     }
+ 105              		.loc 1 14 0
+ 106 0062 8DF80F40 		strb	r4, [sp, #15]
+ 107              	.LVL4:
+ 108              	.LBE6:
+ 109              		.loc 1 16 0
+ 110 0066 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 111              	.LVL5:
+  17:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 112              		.loc 1 17 0
+ 113 006a 2846     		mov	r0, r5
+ 114 006c 0122     		movs	r2, #1
+ 115 006e 4FF48071 		mov	r1, #256
+  18:Src/hardware/sensors.c **** }
+ 116              		.loc 1 18 0
+ 117 0072 04B0     		add	sp, sp, #16
+ 118              	.LCFI2:
+ 119              		.cfi_def_cfa_offset 24
+ 120              		@ sp needed
+ 121 0074 BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 122              	.LCFI3:
+ 123              		.cfi_restore 14
+ 124              		.cfi_restore 8
+ 125              		.cfi_restore 7
+ 126              		.cfi_restore 6
+ 127              		.cfi_restore 5
+ 128              		.cfi_restore 4
+ 129              		.cfi_def_cfa_offset 0
+ 130              	.LVL6:
+  17:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 131              		.loc 1 17 0
+ 132 0078 FFF7FEBF 		b	HAL_GPIO_WritePin
+ 133              	.LVL7:
+ 134              	.L5:
+ 135              		.align	2
+ 136              	.L4:
+ 137 007c 00040240 		.word	1073873920
+ 138 0080 00000000 		.word	hspi1
+ 139              		.cfi_endproc
+ 140              	.LFE133:
+ 142              		.section	.text.init_gyro,"ax",%progbits
+ 143              		.align	1
+ 144              		.p2align 2,,3
+ 145              		.global	init_gyro
+ 146              		.syntax unified
+ARM GAS  /tmp/cc2KF724.s 			page 4
+
+
+ 147              		.thumb
+ 148              		.thumb_func
+ 149              		.fpu fpv4-sp-d16
+ 151              	init_gyro:
+ 152              	.LFB134:
+  19:Src/hardware/sensors.c **** 
+  20:Src/hardware/sensors.c **** void init_gyro() {
+ 153              		.loc 1 20 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 16
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 158              	.LCFI4:
+ 159              		.cfi_def_cfa_offset 24
+ 160              		.cfi_offset 4, -24
+ 161              		.cfi_offset 5, -20
+ 162              		.cfi_offset 6, -16
+ 163              		.cfi_offset 7, -12
+ 164              		.cfi_offset 8, -8
+ 165              		.cfi_offset 14, -4
+ 166              	.LBB19:
+ 167              	.LBB20:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 168              		.loc 1 12 0
+ 169 0004 774C     		ldr	r4, .L8
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 170              		.loc 1 11 0
+ 171 0006 784D     		ldr	r5, .L8+4
+ 172              	.LBE20:
+ 173              	.LBE19:
+ 174              		.loc 1 20 0
+ 175 0008 86B0     		sub	sp, sp, #24
+ 176              	.LCFI5:
+ 177              		.cfi_def_cfa_offset 48
+ 178              	.LBB28:
+ 179              	.LBB25:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 180              		.loc 1 11 0
+ 181 000a 0026     		movs	r6, #0
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 182              		.loc 1 12 0
+ 183 000c 2046     		mov	r0, r4
+ 184 000e 3246     		mov	r2, r6
+ 185              	.LBE25:
+ 186              	.LBE28:
+  21:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+  22:Src/hardware/sensors.c ****     uint8_t Data_Output[2];
+  23:Src/hardware/sensors.c **** 
+  24:Src/hardware/sensors.c **** 	Data_Input[0] = (0x75 | 0x80); //レンジ設定(2000dpi)
+ 187              		.loc 1 24 0
+ 188 0010 F523     		movs	r3, #245
+ 189              	.LBB29:
+ 190              	.LBB26:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 191              		.loc 1 12 0
+ 192 0012 4FF48071 		mov	r1, #256
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ARM GAS  /tmp/cc2KF724.s 			page 5
+
+
+ 193              		.loc 1 11 0
+ 194 0016 2E61     		str	r6, [r5, #16]
+ 195              	.LBE26:
+ 196              	.LBE29:
+ 197              		.loc 1 24 0
+ 198 0018 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 199              	.LVL8:
+ 200              	.LBB30:
+ 201              	.LBB27:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 202              		.loc 1 12 0
+ 203 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 204              	.LVL9:
+ 205              	.LBB21:
+  14:Src/hardware/sensors.c ****     }
+ 206              		.loc 1 14 0
+ 207 0020 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 208 0024 0133     		adds	r3, r3, #1
+ 209 0026 DBB2     		uxtb	r3, r3
+ 210 0028 8DF80F30 		strb	r3, [sp, #15]
+ 211 002c 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 212 0030 0133     		adds	r3, r3, #1
+ 213 0032 DBB2     		uxtb	r3, r3
+ 214 0034 8DF80F30 		strb	r3, [sp, #15]
+ 215 0038 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 216 003c 0133     		adds	r3, r3, #1
+ 217 003e DBB2     		uxtb	r3, r3
+ 218 0040 8DF80F30 		strb	r3, [sp, #15]
+ 219 0044 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 220 0048 0133     		adds	r3, r3, #1
+ 221 004a DBB2     		uxtb	r3, r3
+ 222 004c 8DF80F30 		strb	r3, [sp, #15]
+ 223 0050 9DF80F70 		ldrb	r7, [sp, #15]	@ zero_extendqisi2
+ 224              	.LBE21:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 225              		.loc 1 16 0
+ 226 0054 4FF06408 		mov	r8, #100
+ 227              	.LBB22:
+  14:Src/hardware/sensors.c ****     }
+ 228              		.loc 1 14 0
+ 229 0058 0137     		adds	r7, r7, #1
+ 230              	.LBE22:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 231              		.loc 1 16 0
+ 232 005a 0223     		movs	r3, #2
+ 233 005c 05AA     		add	r2, sp, #20
+ 234              	.LVL10:
+ 235 005e 04A9     		add	r1, sp, #16
+ 236              	.LVL11:
+ 237              	.LBB23:
+  14:Src/hardware/sensors.c ****     }
+ 238              		.loc 1 14 0
+ 239 0060 FFB2     		uxtb	r7, r7
+ 240              	.LBE23:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 241              		.loc 1 16 0
+ 242 0062 2846     		mov	r0, r5
+ARM GAS  /tmp/cc2KF724.s 			page 6
+
+
+ 243 0064 CDF80080 		str	r8, [sp]
+ 244              	.LBB24:
+  14:Src/hardware/sensors.c ****     }
+ 245              		.loc 1 14 0
+ 246 0068 8DF80F70 		strb	r7, [sp, #15]
+ 247              	.LVL12:
+ 248              	.LBE24:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 249              		.loc 1 16 0
+ 250 006c FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 251              	.LVL13:
+  17:Src/hardware/sensors.c **** }
+ 252              		.loc 1 17 0
+ 253 0070 2046     		mov	r0, r4
+ 254 0072 0122     		movs	r2, #1
+ 255 0074 4FF48071 		mov	r1, #256
+ 256 0078 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 257              	.LVL14:
+ 258              	.LBE27:
+ 259              	.LBE30:
+  25:Src/hardware/sensors.c ****     Data_Input[1] = 0x00;
+  26:Src/hardware/sensors.c ****     gyro_rw(Data_Input, Data_Output);
+  27:Src/hardware/sensors.c **** 	//printf("%x\n",Data_Output[1]);
+  28:Src/hardware/sensors.c ****     HAL_Delay(10);
+ 260              		.loc 1 28 0
+ 261 007c 0A20     		movs	r0, #10
+ 262 007e FFF7FEFF 		bl	HAL_Delay
+ 263              	.LVL15:
+ 264              	.LBB31:
+ 265              	.LBB32:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 266              		.loc 1 12 0
+ 267 0082 3246     		mov	r2, r6
+ 268 0084 2046     		mov	r0, r4
+ 269              	.LBE32:
+ 270              	.LBE31:
+  29:Src/hardware/sensors.c **** 
+  30:Src/hardware/sensors.c **** 	Data_Input[0] = 0x6B;
+ 271              		.loc 1 30 0
+ 272 0086 6B23     		movs	r3, #107
+ 273              	.LBB39:
+ 274              	.LBB37:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 275              		.loc 1 12 0
+ 276 0088 4FF48071 		mov	r1, #256
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 277              		.loc 1 11 0
+ 278 008c 2E61     		str	r6, [r5, #16]
+ 279              	.LBE37:
+ 280              	.LBE39:
+ 281              		.loc 1 30 0
+ 282 008e ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 283              	.LVL16:
+ 284              	.LBB40:
+ 285              	.LBB38:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 286              		.loc 1 12 0
+ARM GAS  /tmp/cc2KF724.s 			page 7
+
+
+ 287 0092 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 288              	.LVL17:
+ 289              	.LBB33:
+  14:Src/hardware/sensors.c ****     }
+ 290              		.loc 1 14 0
+ 291 0096 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 292              	.LBE33:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 293              		.loc 1 16 0
+ 294 009a CDF80080 		str	r8, [sp]
+ 295              	.LBB34:
+  14:Src/hardware/sensors.c ****     }
+ 296              		.loc 1 14 0
+ 297 009e 0133     		adds	r3, r3, #1
+ 298 00a0 DBB2     		uxtb	r3, r3
+ 299 00a2 8DF80E30 		strb	r3, [sp, #14]
+ 300 00a6 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 301 00aa 0133     		adds	r3, r3, #1
+ 302 00ac DBB2     		uxtb	r3, r3
+ 303 00ae 8DF80E30 		strb	r3, [sp, #14]
+ 304 00b2 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 305 00b6 0133     		adds	r3, r3, #1
+ 306 00b8 DBB2     		uxtb	r3, r3
+ 307 00ba 8DF80E30 		strb	r3, [sp, #14]
+ 308 00be 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 309 00c2 0133     		adds	r3, r3, #1
+ 310 00c4 DBB2     		uxtb	r3, r3
+ 311 00c6 8DF80E30 		strb	r3, [sp, #14]
+ 312 00ca 9DF80E70 		ldrb	r7, [sp, #14]	@ zero_extendqisi2
+ 313 00ce 0137     		adds	r7, r7, #1
+ 314              	.LBE34:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 315              		.loc 1 16 0
+ 316 00d0 0223     		movs	r3, #2
+ 317 00d2 05AA     		add	r2, sp, #20
+ 318              	.LVL18:
+ 319 00d4 04A9     		add	r1, sp, #16
+ 320              	.LVL19:
+ 321              	.LBB35:
+  14:Src/hardware/sensors.c ****     }
+ 322              		.loc 1 14 0
+ 323 00d6 FFB2     		uxtb	r7, r7
+ 324              	.LBE35:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 325              		.loc 1 16 0
+ 326 00d8 2846     		mov	r0, r5
+ 327              	.LBB36:
+  14:Src/hardware/sensors.c ****     }
+ 328              		.loc 1 14 0
+ 329 00da 8DF80E70 		strb	r7, [sp, #14]
+ 330              	.LVL20:
+ 331              	.LBE36:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 332              		.loc 1 16 0
+ 333 00de FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 334              	.LVL21:
+  17:Src/hardware/sensors.c **** }
+ARM GAS  /tmp/cc2KF724.s 			page 8
+
+
+ 335              		.loc 1 17 0
+ 336 00e2 2046     		mov	r0, r4
+ 337 00e4 0122     		movs	r2, #1
+ 338 00e6 4FF48071 		mov	r1, #256
+ 339 00ea FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 340              	.LVL22:
+ 341              	.LBE38:
+ 342              	.LBE40:
+  31:Src/hardware/sensors.c **** 	Data_Input[1] = 0x00; //Disable Sleep
+  32:Src/hardware/sensors.c **** 	gyro_rw(Data_Input, Data_Output);
+  33:Src/hardware/sensors.c **** 	HAL_Delay(10);
+ 343              		.loc 1 33 0
+ 344 00ee 0A20     		movs	r0, #10
+ 345 00f0 FFF7FEFF 		bl	HAL_Delay
+ 346              	.LVL23:
+ 347              	.LBB41:
+ 348              	.LBB42:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 349              		.loc 1 12 0
+ 350 00f4 3246     		mov	r2, r6
+ 351 00f6 2046     		mov	r0, r4
+ 352              	.LBE42:
+ 353              	.LBE41:
+  34:Src/hardware/sensors.c **** 
+  35:Src/hardware/sensors.c **** 	Data_Input[0] = 0x6A;
+ 354              		.loc 1 35 0
+ 355 00f8 41F26A03 		movw	r3, #4202
+ 356              	.LBB49:
+ 357              	.LBB47:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 358              		.loc 1 12 0
+ 359 00fc 4FF48071 		mov	r1, #256
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 360              		.loc 1 11 0
+ 361 0100 2E61     		str	r6, [r5, #16]
+ 362              	.LBE47:
+ 363              	.LBE49:
+ 364              		.loc 1 35 0
+ 365 0102 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 366              	.LVL24:
+ 367              	.LBB50:
+ 368              	.LBB48:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 369              		.loc 1 12 0
+ 370 0106 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 371              	.LVL25:
+ 372              	.LBB43:
+  14:Src/hardware/sensors.c ****     }
+ 373              		.loc 1 14 0
+ 374 010a 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 375              	.LBE43:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 376              		.loc 1 16 0
+ 377 010e CDF80080 		str	r8, [sp]
+ 378              	.LBB44:
+  14:Src/hardware/sensors.c ****     }
+ 379              		.loc 1 14 0
+ARM GAS  /tmp/cc2KF724.s 			page 9
+
+
+ 380 0112 0133     		adds	r3, r3, #1
+ 381 0114 DBB2     		uxtb	r3, r3
+ 382 0116 8DF80D30 		strb	r3, [sp, #13]
+ 383 011a 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 384 011e 0133     		adds	r3, r3, #1
+ 385 0120 DBB2     		uxtb	r3, r3
+ 386 0122 8DF80D30 		strb	r3, [sp, #13]
+ 387 0126 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 388 012a 0133     		adds	r3, r3, #1
+ 389 012c DBB2     		uxtb	r3, r3
+ 390 012e 8DF80D30 		strb	r3, [sp, #13]
+ 391 0132 9DF80D30 		ldrb	r3, [sp, #13]	@ zero_extendqisi2
+ 392 0136 0133     		adds	r3, r3, #1
+ 393 0138 DBB2     		uxtb	r3, r3
+ 394 013a 8DF80D30 		strb	r3, [sp, #13]
+ 395 013e 9DF80D70 		ldrb	r7, [sp, #13]	@ zero_extendqisi2
+ 396 0142 0137     		adds	r7, r7, #1
+ 397              	.LBE44:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 398              		.loc 1 16 0
+ 399 0144 0223     		movs	r3, #2
+ 400 0146 05AA     		add	r2, sp, #20
+ 401              	.LVL26:
+ 402 0148 04A9     		add	r1, sp, #16
+ 403              	.LVL27:
+ 404              	.LBB45:
+  14:Src/hardware/sensors.c ****     }
+ 405              		.loc 1 14 0
+ 406 014a FFB2     		uxtb	r7, r7
+ 407              	.LBE45:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 408              		.loc 1 16 0
+ 409 014c 2846     		mov	r0, r5
+ 410              	.LBB46:
+  14:Src/hardware/sensors.c ****     }
+ 411              		.loc 1 14 0
+ 412 014e 8DF80D70 		strb	r7, [sp, #13]
+ 413              	.LVL28:
+ 414              	.LBE46:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 415              		.loc 1 16 0
+ 416 0152 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 417              	.LVL29:
+  17:Src/hardware/sensors.c **** }
+ 418              		.loc 1 17 0
+ 419 0156 2046     		mov	r0, r4
+ 420 0158 0122     		movs	r2, #1
+ 421 015a 4FF48071 		mov	r1, #256
+ 422 015e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 423              	.LVL30:
+ 424              	.LBE48:
+ 425              	.LBE50:
+  36:Src/hardware/sensors.c **** 	Data_Input[1] = 0x10; //Reset
+  37:Src/hardware/sensors.c **** 	gyro_rw(Data_Input, Data_Output);
+  38:Src/hardware/sensors.c **** 	HAL_Delay(10);
+ 426              		.loc 1 38 0
+ 427 0162 0A20     		movs	r0, #10
+ARM GAS  /tmp/cc2KF724.s 			page 10
+
+
+ 428 0164 FFF7FEFF 		bl	HAL_Delay
+ 429              	.LVL31:
+ 430              	.LBB51:
+ 431              	.LBB52:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 432              		.loc 1 12 0
+ 433 0168 3246     		mov	r2, r6
+ 434 016a 2046     		mov	r0, r4
+ 435              	.LBE52:
+ 436              	.LBE51:
+  39:Src/hardware/sensors.c **** 
+  40:Src/hardware/sensors.c ****     Data_Input[0] = 0x1B; //レンジ設定(2000dpi)
+ 437              		.loc 1 40 0
+ 438 016c 41F61B03 		movw	r3, #6171
+ 439              	.LBB59:
+ 440              	.LBB57:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 441              		.loc 1 12 0
+ 442 0170 4FF48071 		mov	r1, #256
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 443              		.loc 1 11 0
+ 444 0174 2E61     		str	r6, [r5, #16]
+ 445              	.LBE57:
+ 446              	.LBE59:
+ 447              		.loc 1 40 0
+ 448 0176 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 449              	.LVL32:
+ 450              	.LBB60:
+ 451              	.LBB58:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 452              		.loc 1 12 0
+ 453 017a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 454              	.LVL33:
+ 455              	.LBB53:
+  14:Src/hardware/sensors.c ****     }
+ 456              		.loc 1 14 0
+ 457 017e 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 458              	.LBE53:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 459              		.loc 1 16 0
+ 460 0182 CDF80080 		str	r8, [sp]
+ 461              	.LBB54:
+  14:Src/hardware/sensors.c ****     }
+ 462              		.loc 1 14 0
+ 463 0186 0133     		adds	r3, r3, #1
+ 464 0188 DBB2     		uxtb	r3, r3
+ 465 018a 8DF80C30 		strb	r3, [sp, #12]
+ 466 018e 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 467 0192 0133     		adds	r3, r3, #1
+ 468 0194 DBB2     		uxtb	r3, r3
+ 469 0196 8DF80C30 		strb	r3, [sp, #12]
+ 470 019a 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 471 019e 0133     		adds	r3, r3, #1
+ 472 01a0 DBB2     		uxtb	r3, r3
+ 473 01a2 8DF80C30 		strb	r3, [sp, #12]
+ 474 01a6 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 475 01aa 0133     		adds	r3, r3, #1
+ARM GAS  /tmp/cc2KF724.s 			page 11
+
+
+ 476 01ac DBB2     		uxtb	r3, r3
+ 477 01ae 8DF80C30 		strb	r3, [sp, #12]
+ 478 01b2 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 479 01b6 0133     		adds	r3, r3, #1
+ 480              	.LBE54:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 481              		.loc 1 16 0
+ 482 01b8 05AA     		add	r2, sp, #20
+ 483              	.LVL34:
+ 484 01ba 04A9     		add	r1, sp, #16
+ 485              	.LVL35:
+ 486 01bc 2846     		mov	r0, r5
+ 487              	.LBB55:
+  14:Src/hardware/sensors.c ****     }
+ 488              		.loc 1 14 0
+ 489 01be DDB2     		uxtb	r5, r3
+ 490              	.LBE55:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 491              		.loc 1 16 0
+ 492 01c0 0223     		movs	r3, #2
+ 493              	.LBB56:
+  14:Src/hardware/sensors.c ****     }
+ 494              		.loc 1 14 0
+ 495 01c2 8DF80C50 		strb	r5, [sp, #12]
+ 496              	.LVL36:
+ 497              	.LBE56:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 498              		.loc 1 16 0
+ 499 01c6 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 500              	.LVL37:
+  17:Src/hardware/sensors.c **** }
+ 501              		.loc 1 17 0
+ 502 01ca 2046     		mov	r0, r4
+ 503 01cc 0122     		movs	r2, #1
+ 504 01ce 4FF48071 		mov	r1, #256
+ 505 01d2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 506              	.LVL38:
+ 507              	.LBE58:
+ 508              	.LBE60:
+  41:Src/hardware/sensors.c ****     Data_Input[1] = 0x18;
+  42:Src/hardware/sensors.c ****     gyro_rw(Data_Input, Data_Output);
+  43:Src/hardware/sensors.c ****     HAL_Delay(10);
+ 509              		.loc 1 43 0
+ 510 01d6 0A20     		movs	r0, #10
+ 511 01d8 FFF7FEFF 		bl	HAL_Delay
+ 512              	.LVL39:
+  44:Src/hardware/sensors.c **** }
+ 513              		.loc 1 44 0
+ 514 01dc 06B0     		add	sp, sp, #24
+ 515              	.LCFI6:
+ 516              		.cfi_def_cfa_offset 24
+ 517              		@ sp needed
+ 518 01de BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 519              	.L9:
+ 520 01e2 00BF     		.align	2
+ 521              	.L8:
+ 522 01e4 00040240 		.word	1073873920
+ARM GAS  /tmp/cc2KF724.s 			page 12
+
+
+ 523 01e8 00000000 		.word	hspi1
+ 524              		.cfi_endproc
+ 525              	.LFE134:
+ 527              		.section	.text.get_avel,"ax",%progbits
+ 528              		.align	1
+ 529              		.p2align 2,,3
+ 530              		.global	get_avel
+ 531              		.syntax unified
+ 532              		.thumb
+ 533              		.thumb_func
+ 534              		.fpu fpv4-sp-d16
+ 536              	get_avel:
+ 537              	.LFB135:
+  45:Src/hardware/sensors.c **** 
+  46:Src/hardware/sensors.c **** int16_t get_avel(uint8_t _axis) {
+ 538              		.loc 1 46 0
+ 539              		.cfi_startproc
+ 540              		@ args = 0, pretend = 0, frame = 16
+ 541              		@ frame_needed = 0, uses_anonymous_args = 0
+ 542              	.LVL40:
+ 543 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 544              	.LCFI7:
+ 545              		.cfi_def_cfa_offset 20
+ 546              		.cfi_offset 4, -20
+ 547              		.cfi_offset 5, -16
+ 548              		.cfi_offset 6, -12
+ 549              		.cfi_offset 7, -8
+ 550              		.cfi_offset 14, -4
+ 551 0002 87B0     		sub	sp, sp, #28
+ 552              	.LCFI8:
+ 553              		.cfi_def_cfa_offset 48
+  47:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+ 554              		.loc 1 47 0
+ 555 0004 0023     		movs	r3, #0
+  48:Src/hardware/sensors.c ****     uint8_t Data_Output[2];
+  49:Src/hardware/sensors.c ****     int16_t gyro_data;
+  50:Src/hardware/sensors.c **** 
+  51:Src/hardware/sensors.c ****     switch(_axis) {
+ 556              		.loc 1 51 0
+ 557 0006 0128     		cmp	r0, #1
+  46:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+ 558              		.loc 1 46 0
+ 559 0008 0746     		mov	r7, r0
+  47:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+ 560              		.loc 1 47 0
+ 561 000a ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 562              		.loc 1 51 0
+ 563 000e 00F08E80 		beq	.L12
+ 564 0012 C0F08880 		bcc	.L13
+ 565 0016 0228     		cmp	r0, #2
+ 566 0018 79D0     		beq	.L14
+ 567              	.L11:
+ 568              	.LVL41:
+ 569              	.LBB67:
+ 570              	.LBB68:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 571              		.loc 1 11 0
+ARM GAS  /tmp/cc2KF724.s 			page 13
+
+
+ 572 001a 0023     		movs	r3, #0
+ 573 001c 464E     		ldr	r6, .L20
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 574              		.loc 1 12 0
+ 575 001e 4748     		ldr	r0, .L20+4
+ 576              	.LVL42:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 577              		.loc 1 11 0
+ 578 0020 3361     		str	r3, [r6, #16]
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 579              		.loc 1 12 0
+ 580 0022 1A46     		mov	r2, r3
+ 581 0024 4FF48071 		mov	r1, #256
+ 582 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 583              	.LVL43:
+ 584              	.LBB69:
+  14:Src/hardware/sensors.c ****     }
+ 585              		.loc 1 14 0
+ 586 002c 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 587 0030 0133     		adds	r3, r3, #1
+ 588 0032 DBB2     		uxtb	r3, r3
+ 589 0034 8DF80E30 		strb	r3, [sp, #14]
+ 590 0038 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 591 003c 0133     		adds	r3, r3, #1
+ 592 003e DBB2     		uxtb	r3, r3
+ 593 0040 8DF80E30 		strb	r3, [sp, #14]
+ 594 0044 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 595 0048 0133     		adds	r3, r3, #1
+ 596 004a DBB2     		uxtb	r3, r3
+ 597 004c 8DF80E30 		strb	r3, [sp, #14]
+ 598 0050 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 599 0054 0133     		adds	r3, r3, #1
+ 600 0056 DBB2     		uxtb	r3, r3
+ 601 0058 8DF80E30 		strb	r3, [sp, #14]
+ 602 005c 9DF80E40 		ldrb	r4, [sp, #14]	@ zero_extendqisi2
+ 603              	.LBE69:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 604              		.loc 1 16 0
+ 605 0060 6423     		movs	r3, #100
+ 606              	.LBB70:
+  14:Src/hardware/sensors.c ****     }
+ 607              		.loc 1 14 0
+ 608 0062 0134     		adds	r4, r4, #1
+ 609              	.LBE70:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 610              		.loc 1 16 0
+ 611 0064 05AA     		add	r2, sp, #20
+ 612              	.LVL44:
+ 613 0066 0093     		str	r3, [sp]
+ 614 0068 04A9     		add	r1, sp, #16
+ 615              	.LVL45:
+ 616 006a 0223     		movs	r3, #2
+ 617              	.LBB71:
+  14:Src/hardware/sensors.c ****     }
+ 618              		.loc 1 14 0
+ 619 006c E4B2     		uxtb	r4, r4
+ 620              	.LBE71:
+ARM GAS  /tmp/cc2KF724.s 			page 14
+
+
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 621              		.loc 1 16 0
+ 622 006e 3046     		mov	r0, r6
+ 623              	.LBB72:
+  14:Src/hardware/sensors.c ****     }
+ 624              		.loc 1 14 0
+ 625 0070 8DF80E40 		strb	r4, [sp, #14]
+ 626              	.LVL46:
+ 627              	.LBE72:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 628              		.loc 1 16 0
+ 629 0074 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 630              	.LVL47:
+  17:Src/hardware/sensors.c **** }
+ 631              		.loc 1 17 0
+ 632 0078 0122     		movs	r2, #1
+ 633 007a 4FF48071 		mov	r1, #256
+ 634 007e 2F48     		ldr	r0, .L20+4
+ 635 0080 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 636              	.LVL48:
+ 637              	.LBE68:
+ 638              	.LBE67:
+  52:Src/hardware/sensors.c ****     case 0: // X
+  53:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_XOUT_H;
+  54:Src/hardware/sensors.c ****         break;
+  55:Src/hardware/sensors.c ****     case 1: // Y
+  56:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_YOUT_H;
+  57:Src/hardware/sensors.c ****         break;
+  58:Src/hardware/sensors.c ****     case 2: // Z
+  59:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_ZOUT_H;
+  60:Src/hardware/sensors.c ****         break;
+  61:Src/hardware/sensors.c ****     }
+  62:Src/hardware/sensors.c ****     gyro_rw(Data_Input, Data_Output);
+  63:Src/hardware/sensors.c ****     //printf("%x", Data_Output[1]);
+  64:Src/hardware/sensors.c ****     gyro_data = Data_Output[1];
+  65:Src/hardware/sensors.c ****     gyro_data = gyro_data << 8;
+ 639              		.loc 1 65 0
+ 640 0084 9DF91550 		ldrsb	r5, [sp, #21]
+  66:Src/hardware/sensors.c ****     switch(_axis) {
+ 641              		.loc 1 66 0
+ 642 0088 012F     		cmp	r7, #1
+  65:Src/hardware/sensors.c ****     switch(_axis) {
+ 643              		.loc 1 65 0
+ 644 008a 4FEA0525 		lsl	r5, r5, #8
+ 645              	.LVL49:
+ 646              		.loc 1 66 0
+ 647 008e 46D0     		beq	.L16
+ 648 0090 41D3     		bcc	.L17
+ 649 0092 022F     		cmp	r7, #2
+ 650 0094 02D1     		bne	.L15
+  67:Src/hardware/sensors.c ****     case 0: // X
+  68:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_XOUT_L;
+  69:Src/hardware/sensors.c ****         break;
+  70:Src/hardware/sensors.c ****     case 1: // Y
+  71:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_YOUT_L;
+  72:Src/hardware/sensors.c ****         break;
+  73:Src/hardware/sensors.c ****     case 2: // Z
+ARM GAS  /tmp/cc2KF724.s 			page 15
+
+
+  74:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_ZOUT_L;
+ 651              		.loc 1 74 0
+ 652 0096 C823     		movs	r3, #200
+ 653 0098 8DF81030 		strb	r3, [sp, #16]
+ 654              	.L15:
+ 655              	.LVL50:
+ 656              	.LBB73:
+ 657              	.LBB74:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 658              		.loc 1 11 0
+ 659 009c 0023     		movs	r3, #0
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 660              		.loc 1 12 0
+ 661 009e 1A46     		mov	r2, r3
+ 662 00a0 4FF48071 		mov	r1, #256
+ 663 00a4 2548     		ldr	r0, .L20+4
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 664              		.loc 1 11 0
+ 665 00a6 3361     		str	r3, [r6, #16]
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 666              		.loc 1 12 0
+ 667 00a8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 668              	.LVL51:
+ 669              	.LBB75:
+  14:Src/hardware/sensors.c ****     }
+ 670              		.loc 1 14 0
+ 671 00ac 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 672              	.LBE75:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 673              		.loc 1 16 0
+ 674 00b0 2148     		ldr	r0, .L20
+ 675              	.LBB76:
+  14:Src/hardware/sensors.c ****     }
+ 676              		.loc 1 14 0
+ 677 00b2 0133     		adds	r3, r3, #1
+ 678 00b4 DBB2     		uxtb	r3, r3
+ 679 00b6 8DF80F30 		strb	r3, [sp, #15]
+ 680 00ba 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 681 00be 0133     		adds	r3, r3, #1
+ 682 00c0 DBB2     		uxtb	r3, r3
+ 683 00c2 8DF80F30 		strb	r3, [sp, #15]
+ 684 00c6 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 685 00ca 0133     		adds	r3, r3, #1
+ 686 00cc DBB2     		uxtb	r3, r3
+ 687 00ce 8DF80F30 		strb	r3, [sp, #15]
+ 688 00d2 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 689 00d6 0133     		adds	r3, r3, #1
+ 690 00d8 DBB2     		uxtb	r3, r3
+ 691 00da 8DF80F30 		strb	r3, [sp, #15]
+ 692 00de 9DF80F40 		ldrb	r4, [sp, #15]	@ zero_extendqisi2
+ 693              	.LBE76:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 694              		.loc 1 16 0
+ 695 00e2 6423     		movs	r3, #100
+ 696              	.LBB77:
+  14:Src/hardware/sensors.c ****     }
+ 697              		.loc 1 14 0
+ARM GAS  /tmp/cc2KF724.s 			page 16
+
+
+ 698 00e4 0134     		adds	r4, r4, #1
+ 699              	.LBE77:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 700              		.loc 1 16 0
+ 701 00e6 05AA     		add	r2, sp, #20
+ 702              	.LVL52:
+ 703 00e8 04A9     		add	r1, sp, #16
+ 704              	.LVL53:
+ 705 00ea 0093     		str	r3, [sp]
+ 706              	.LBB78:
+  14:Src/hardware/sensors.c ****     }
+ 707              		.loc 1 14 0
+ 708 00ec E4B2     		uxtb	r4, r4
+ 709              	.LBE78:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 710              		.loc 1 16 0
+ 711 00ee 0223     		movs	r3, #2
+ 712              	.LBB79:
+  14:Src/hardware/sensors.c ****     }
+ 713              		.loc 1 14 0
+ 714 00f0 8DF80F40 		strb	r4, [sp, #15]
+ 715              	.LVL54:
+ 716              	.LBE79:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 717              		.loc 1 16 0
+ 718 00f4 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 719              	.LVL55:
+  17:Src/hardware/sensors.c **** }
+ 720              		.loc 1 17 0
+ 721 00f8 0122     		movs	r2, #1
+ 722 00fa 4FF48071 		mov	r1, #256
+ 723 00fe 0F48     		ldr	r0, .L20+4
+ 724 0100 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 725              	.LVL56:
+ 726              	.LBE74:
+ 727              	.LBE73:
+  75:Src/hardware/sensors.c ****         break;
+  76:Src/hardware/sensors.c ****     }
+  77:Src/hardware/sensors.c **** 
+  78:Src/hardware/sensors.c ****     gyro_rw(Data_Input, Data_Output);
+  79:Src/hardware/sensors.c **** 	//printf("%x\n", Data_Output[1]);
+  80:Src/hardware/sensors.c ****     gyro_data |= (int16_t)Data_Output[1];
+ 728              		.loc 1 80 0
+ 729 0104 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 730              	.LVL57:
+  81:Src/hardware/sensors.c **** 
+  82:Src/hardware/sensors.c ****     return gyro_data;
+  83:Src/hardware/sensors.c **** }
+ 731              		.loc 1 83 0
+ 732 0108 2843     		orrs	r0, r0, r5
+ 733              	.LVL58:
+ 734 010a 07B0     		add	sp, sp, #28
+ 735              	.LCFI9:
+ 736              		.cfi_remember_state
+ 737              		.cfi_def_cfa_offset 20
+ 738              		@ sp needed
+ 739 010c F0BD     		pop	{r4, r5, r6, r7, pc}
+ARM GAS  /tmp/cc2KF724.s 			page 17
+
+
+ 740              	.LVL59:
+ 741              	.L14:
+ 742              	.LCFI10:
+ 743              		.cfi_restore_state
+  59:Src/hardware/sensors.c ****         break;
+ 744              		.loc 1 59 0
+ 745 010e C723     		movs	r3, #199
+ 746 0110 8DF81030 		strb	r3, [sp, #16]
+  60:Src/hardware/sensors.c ****     }
+ 747              		.loc 1 60 0
+ 748 0114 81E7     		b	.L11
+ 749              	.LVL60:
+ 750              	.L17:
+  68:Src/hardware/sensors.c ****         break;
+ 751              		.loc 1 68 0
+ 752 0116 C423     		movs	r3, #196
+ 753 0118 8DF81030 		strb	r3, [sp, #16]
+  69:Src/hardware/sensors.c ****     case 1: // Y
+ 754              		.loc 1 69 0
+ 755 011c BEE7     		b	.L15
+ 756              	.L16:
+  71:Src/hardware/sensors.c ****         break;
+ 757              		.loc 1 71 0
+ 758 011e C623     		movs	r3, #198
+ 759 0120 8DF81030 		strb	r3, [sp, #16]
+  72:Src/hardware/sensors.c ****     case 2: // Z
+ 760              		.loc 1 72 0
+ 761 0124 BAE7     		b	.L15
+ 762              	.LVL61:
+ 763              	.L13:
+  53:Src/hardware/sensors.c ****         break;
+ 764              		.loc 1 53 0
+ 765 0126 C323     		movs	r3, #195
+ 766 0128 8DF81030 		strb	r3, [sp, #16]
+  54:Src/hardware/sensors.c ****     case 1: // Y
+ 767              		.loc 1 54 0
+ 768 012c 75E7     		b	.L11
+ 769              	.L12:
+  56:Src/hardware/sensors.c ****         break;
+ 770              		.loc 1 56 0
+ 771 012e C523     		movs	r3, #197
+ 772 0130 8DF81030 		strb	r3, [sp, #16]
+  57:Src/hardware/sensors.c ****     case 2: // Z
+ 773              		.loc 1 57 0
+ 774 0134 71E7     		b	.L11
+ 775              	.L21:
+ 776 0136 00BF     		.align	2
+ 777              	.L20:
+ 778 0138 00000000 		.word	hspi1
+ 779 013c 00040240 		.word	1073873920
+ 780              		.cfi_endproc
+ 781              	.LFE135:
+ 783              		.section	.text.gyro_get_reference,"ax",%progbits
+ 784              		.align	1
+ 785              		.p2align 2,,3
+ 786              		.global	gyro_get_reference
+ 787              		.syntax unified
+ARM GAS  /tmp/cc2KF724.s 			page 18
+
+
+ 788              		.thumb
+ 789              		.thumb_func
+ 790              		.fpu fpv4-sp-d16
+ 792              	gyro_get_reference:
+ 793              	.LFB136:
+  84:Src/hardware/sensors.c **** int16_t gyro_get_reference() {
+ 794              		.loc 1 84 0
+ 795              		.cfi_startproc
+ 796              		@ args = 0, pretend = 0, frame = 16
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 798 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 799              	.LCFI11:
+ 800              		.cfi_def_cfa_offset 36
+ 801              		.cfi_offset 4, -36
+ 802              		.cfi_offset 5, -32
+ 803              		.cfi_offset 6, -28
+ 804              		.cfi_offset 7, -24
+ 805              		.cfi_offset 8, -20
+ 806              		.cfi_offset 9, -16
+ 807              		.cfi_offset 10, -12
+ 808              		.cfi_offset 11, -8
+ 809              		.cfi_offset 14, -4
+  85:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+  86:Src/hardware/sensors.c ****     uint8_t Data_Output[2];
+  87:Src/hardware/sensors.c ****     int16_t gyro_data;
+  88:Src/hardware/sensors.c ****     int32_t sum_data = 0;
+  89:Src/hardware/sensors.c ****     Flag_gyroEn = 0;
+ 810              		.loc 1 89 0
+ 811 0004 4E4B     		ldr	r3, .L26
+ 812 0006 DFF84491 		ldr	r9, .L26+12
+ 813              	.LBB87:
+ 814              	.LBB88:
+ 815              	.LBB89:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 816              		.loc 1 12 0
+ 817 000a 4E4F     		ldr	r7, .L26+4
+ 818              	.LBE89:
+ 819              	.LBE88:
+ 820              	.LBE87:
+  84:Src/hardware/sensors.c **** int16_t gyro_get_reference() {
+ 821              		.loc 1 84 0
+ 822 000c 87B0     		sub	sp, sp, #28
+ 823              	.LCFI12:
+ 824              		.cfi_def_cfa_offset 64
+  85:Src/hardware/sensors.c ****     uint8_t Data_Input[] = {0x00, 0x00};
+ 825              		.loc 1 85 0
+ 826 000e 4FF00008 		mov	r8, #0
+  90:Src/hardware/sensors.c ****     HAL_Delay(100);
+ 827              		.loc 1 90 0
+ 828 0012 6420     		movs	r0, #100
+  89:Src/hardware/sensors.c ****     HAL_Delay(100);
+ 829              		.loc 1 89 0
+ 830 0014 83F80080 		strb	r8, [r3]
+  85:Src/hardware/sensors.c ****     uint8_t Data_Output[2];
+ 831              		.loc 1 85 0
+ 832 0018 ADF81080 		strh	r8, [sp, #16]	@ movhi
+ 833              	.LVL62:
+ARM GAS  /tmp/cc2KF724.s 			page 19
+
+
+ 834              		.loc 1 90 0
+ 835 001c FFF7FEFF 		bl	HAL_Delay
+ 836              	.LVL63:
+ 837              	.LBB109:
+ 838              	.LBB96:
+ 839              	.LBB93:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 840              		.loc 1 16 0
+ 841 0020 CA46     		mov	r10, r9
+ 842              	.LBE93:
+ 843              	.LBE96:
+ 844              	.LBE109:
+ 845              		.loc 1 90 0
+ 846 0022 4FF47A76 		mov	r6, #1000
+ 847              	.LBB110:
+  91:Src/hardware/sensors.c ****     for(uint16_t i = 0; i < 1000; i++) {
+  92:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_ZOUT_H;
+ 848              		.loc 1 92 0
+ 849 0026 4FF0C70B 		mov	fp, #199
+ 850              	.LVL64:
+ 851              	.L23:
+ 852              	.LBB97:
+ 853              	.LBB94:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 854              		.loc 1 11 0 discriminator 3
+ 855 002a 0024     		movs	r4, #0
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 856              		.loc 1 12 0 discriminator 3
+ 857 002c 2246     		mov	r2, r4
+ 858 002e 4FF48071 		mov	r1, #256
+ 859 0032 3846     		mov	r0, r7
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 860              		.loc 1 11 0 discriminator 3
+ 861 0034 C9F81040 		str	r4, [r9, #16]
+ 862              	.LBE94:
+ 863              	.LBE97:
+ 864              		.loc 1 92 0 discriminator 3
+ 865 0038 ADF810B0 		strh	fp, [sp, #16]	@ movhi
+ 866              	.LVL65:
+ 867              	.LBB98:
+ 868              	.LBB95:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 869              		.loc 1 12 0 discriminator 3
+ 870 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 871              	.LVL66:
+ 872              	.LBB90:
+  14:Src/hardware/sensors.c ****     }
+ 873              		.loc 1 14 0 discriminator 3
+ 874 0040 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 875 0044 0133     		adds	r3, r3, #1
+ 876 0046 DBB2     		uxtb	r3, r3
+ 877 0048 8DF80F30 		strb	r3, [sp, #15]
+ 878              	.LVL67:
+ 879 004c 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 880 0050 0133     		adds	r3, r3, #1
+ 881 0052 DBB2     		uxtb	r3, r3
+ 882 0054 8DF80F30 		strb	r3, [sp, #15]
+ARM GAS  /tmp/cc2KF724.s 			page 20
+
+
+ 883              	.LVL68:
+ 884 0058 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 885 005c 0133     		adds	r3, r3, #1
+ 886 005e DBB2     		uxtb	r3, r3
+ 887 0060 8DF80F30 		strb	r3, [sp, #15]
+ 888              	.LVL69:
+ 889 0064 9DF80F30 		ldrb	r3, [sp, #15]	@ zero_extendqisi2
+ 890 0068 0133     		adds	r3, r3, #1
+ 891 006a DBB2     		uxtb	r3, r3
+ 892 006c 8DF80F30 		strb	r3, [sp, #15]
+ 893              	.LVL70:
+ 894 0070 9DF80FC0 		ldrb	ip, [sp, #15]	@ zero_extendqisi2
+ 895              	.LBE90:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 896              		.loc 1 16 0 discriminator 3
+ 897 0074 6425     		movs	r5, #100
+ 898              	.LBB91:
+  14:Src/hardware/sensors.c ****     }
+ 899              		.loc 1 14 0 discriminator 3
+ 900 0076 0CF1010C 		add	ip, ip, #1
+ 901 007a 5FFA8CFC 		uxtb	ip, ip
+ 902              	.LBE91:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 903              		.loc 1 16 0 discriminator 3
+ 904 007e 0223     		movs	r3, #2
+ 905 0080 0095     		str	r5, [sp]
+ 906 0082 05AA     		add	r2, sp, #20
+ 907              	.LVL71:
+ 908 0084 04A9     		add	r1, sp, #16
+ 909              	.LVL72:
+ 910 0086 5046     		mov	r0, r10
+ 911              	.LBB92:
+  14:Src/hardware/sensors.c ****     }
+ 912              		.loc 1 14 0 discriminator 3
+ 913 0088 8DF80FC0 		strb	ip, [sp, #15]
+ 914              	.LVL73:
+ 915              	.LBE92:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 916              		.loc 1 16 0 discriminator 3
+ 917 008c FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 918              	.LVL74:
+  17:Src/hardware/sensors.c **** }
+ 919              		.loc 1 17 0 discriminator 3
+ 920 0090 0122     		movs	r2, #1
+ 921 0092 4FF48071 		mov	r1, #256
+ 922 0096 3846     		mov	r0, r7
+ 923 0098 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 924              	.LVL75:
+ 925              	.LBE95:
+ 926              	.LBE98:
+  93:Src/hardware/sensors.c ****         Data_Input[1] = 0x00;
+  94:Src/hardware/sensors.c ****         gyro_rw(Data_Input, Data_Output);
+  95:Src/hardware/sensors.c ****         gyro_data = Data_Output[1];
+  96:Src/hardware/sensors.c ****         gyro_data = gyro_data << 8;
+ 927              		.loc 1 96 0 discriminator 3
+ 928 009c 9DF915C0 		ldrsb	ip, [sp, #21]
+ 929              	.LBB99:
+ARM GAS  /tmp/cc2KF724.s 			page 21
+
+
+ 930              	.LBB100:
+  11:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 0);
+ 931              		.loc 1 11 0 discriminator 3
+ 932 00a0 C9F81040 		str	r4, [r9, #16]
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 933              		.loc 1 12 0 discriminator 3
+ 934 00a4 2246     		mov	r2, r4
+ 935              	.LBE100:
+ 936              	.LBE99:
+  97:Src/hardware/sensors.c **** 
+  98:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_ZOUT_L;
+ 937              		.loc 1 98 0 discriminator 3
+ 938 00a6 C823     		movs	r3, #200
+ 939              	.LBB107:
+ 940              	.LBB105:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 941              		.loc 1 12 0 discriminator 3
+ 942 00a8 4FF48071 		mov	r1, #256
+ 943 00ac 3846     		mov	r0, r7
+ 944              	.LBE105:
+ 945              	.LBE107:
+  96:Src/hardware/sensors.c **** 
+ 946              		.loc 1 96 0 discriminator 3
+ 947 00ae 4FEA0C24 		lsl	r4, ip, #8
+ 948              	.LVL76:
+ 949              		.loc 1 98 0 discriminator 3
+ 950 00b2 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 951              	.LVL77:
+ 952              	.LBB108:
+ 953              	.LBB106:
+  12:Src/hardware/sensors.c ****     for(uint8_t i = 0; i < 5; i++) {
+ 954              		.loc 1 12 0 discriminator 3
+ 955 00b6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 956              	.LVL78:
+ 957              	.LBB101:
+  14:Src/hardware/sensors.c ****     }
+ 958              		.loc 1 14 0 discriminator 3
+ 959 00ba 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 960              	.LBE101:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 961              		.loc 1 16 0 discriminator 3
+ 962 00be 0095     		str	r5, [sp]
+ 963              	.LBB102:
+  14:Src/hardware/sensors.c ****     }
+ 964              		.loc 1 14 0 discriminator 3
+ 965 00c0 0133     		adds	r3, r3, #1
+ 966 00c2 DBB2     		uxtb	r3, r3
+ 967 00c4 8DF80E30 		strb	r3, [sp, #14]
+ 968              	.LVL79:
+ 969 00c8 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 970 00cc 0133     		adds	r3, r3, #1
+ 971 00ce DBB2     		uxtb	r3, r3
+ 972 00d0 8DF80E30 		strb	r3, [sp, #14]
+ 973              	.LVL80:
+ 974 00d4 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 975 00d8 0133     		adds	r3, r3, #1
+ 976 00da DBB2     		uxtb	r3, r3
+ARM GAS  /tmp/cc2KF724.s 			page 22
+
+
+ 977 00dc 8DF80E30 		strb	r3, [sp, #14]
+ 978              	.LVL81:
+ 979 00e0 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 980 00e4 0133     		adds	r3, r3, #1
+ 981 00e6 DBB2     		uxtb	r3, r3
+ 982 00e8 8DF80E30 		strb	r3, [sp, #14]
+ 983              	.LVL82:
+ 984 00ec 9DF80E50 		ldrb	r5, [sp, #14]	@ zero_extendqisi2
+ 985 00f0 0135     		adds	r5, r5, #1
+ 986              	.LBE102:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 987              		.loc 1 16 0 discriminator 3
+ 988 00f2 0223     		movs	r3, #2
+ 989 00f4 05AA     		add	r2, sp, #20
+ 990              	.LVL83:
+ 991 00f6 04A9     		add	r1, sp, #16
+ 992              	.LVL84:
+ 993              	.LBB103:
+  14:Src/hardware/sensors.c ****     }
+ 994              		.loc 1 14 0 discriminator 3
+ 995 00f8 EDB2     		uxtb	r5, r5
+ 996              	.LBE103:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 997              		.loc 1 16 0 discriminator 3
+ 998 00fa 5046     		mov	r0, r10
+ 999              	.LBB104:
+  14:Src/hardware/sensors.c ****     }
+ 1000              		.loc 1 14 0 discriminator 3
+ 1001 00fc 8DF80E50 		strb	r5, [sp, #14]
+ 1002              	.LVL85:
+ 1003              	.LBE104:
+  16:Src/hardware/sensors.c ****     HAL_GPIO_WritePin(CS_GYRO_GPIO_Port, CS_GYRO_Pin, 1);
+ 1004              		.loc 1 16 0 discriminator 3
+ 1005 0100 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+ 1006              	.LVL86:
+  17:Src/hardware/sensors.c **** }
+ 1007              		.loc 1 17 0 discriminator 3
+ 1008 0104 0122     		movs	r2, #1
+ 1009 0106 4FF48071 		mov	r1, #256
+ 1010 010a 3846     		mov	r0, r7
+ 1011 010c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1012              	.LVL87:
+ 1013              	.LBE106:
+ 1014              	.LBE108:
+  99:Src/hardware/sensors.c ****         Data_Input[1] = 0x00;
+ 100:Src/hardware/sensors.c ****         gyro_rw(Data_Input, Data_Output);
+ 101:Src/hardware/sensors.c ****         gyro_data |= (int16_t)Data_Output[1];
+ 1015              		.loc 1 101 0 discriminator 3
+ 1016 0110 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 1017 0114 013E     		subs	r6, r6, #1
+ 102:Src/hardware/sensors.c ****         sum_data += (int32_t)gyro_data;
+ 1018              		.loc 1 102 0 discriminator 3
+ 1019 0116 1C43     		orrs	r4, r4, r3
+ 1020              	.LVL88:
+ 103:Src/hardware/sensors.c ****         HAL_Delay(1);
+ 1021              		.loc 1 103 0 discriminator 3
+ 1022 0118 0120     		movs	r0, #1
+ARM GAS  /tmp/cc2KF724.s 			page 23
+
+
+ 1023 011a B6B2     		uxth	r6, r6
+ 102:Src/hardware/sensors.c ****         sum_data += (int32_t)gyro_data;
+ 1024              		.loc 1 102 0 discriminator 3
+ 1025 011c A044     		add	r8, r8, r4
+ 1026              	.LVL89:
+ 1027              		.loc 1 103 0 discriminator 3
+ 1028 011e FFF7FEFF 		bl	HAL_Delay
+ 1029              	.LVL90:
+  91:Src/hardware/sensors.c ****         Data_Input[0] = GYRO_ZOUT_H;
+ 1030              		.loc 1 91 0 discriminator 3
+ 1031 0122 002E     		cmp	r6, #0
+ 1032 0124 81D1     		bne	.L23
+ 1033              	.LBE110:
+ 104:Src/hardware/sensors.c ****     }
+ 105:Src/hardware/sensors.c ****     return (int16_t)(sum_data / 1000);
+ 1034              		.loc 1 105 0
+ 1035 0126 084A     		ldr	r2, .L26+8
+ 1036 0128 4FEAE873 		asr	r3, r8, #31
+ 1037 012c 82FB0828 		smull	r2, r8, r2, r8
+ 1038              	.LVL91:
+ 1039 0130 C3EBA818 		rsb	r8, r3, r8, asr #6
+ 106:Src/hardware/sensors.c **** }...
+ 1040              		.loc 1 106 0
+ 1041 0134 0FFA88F0 		sxth	r0, r8
+ 1042 0138 07B0     		add	sp, sp, #28
+ 1043              	.LCFI13:
+ 1044              		.cfi_def_cfa_offset 36
+ 1045              		@ sp needed
+ 1046 013a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1047              	.L27:
+ 1048 013e 00BF     		.align	2
+ 1049              	.L26:
+ 1050 0140 00000000 		.word	Flag_gyroEn
+ 1051 0144 00040240 		.word	1073873920
+ 1052 0148 D34D6210 		.word	274877907
+ 1053 014c 00000000 		.word	hspi1
+ 1054              		.cfi_endproc
+ 1055              	.LFE136:
+ 1057              		.text
+ 1058              	.Letext0:
+ 1059              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1060              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1061              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 1062              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 1063              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f413xx.h"
+ 1064              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1065              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1066              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 1067              		.file 10 "Inc/hardware/parameters.h"
+ 1068              		.file 11 "Inc/hardware/global.h"
+ 1069              		.file 12 "Inc/spi.h"
+ 1070              		.file 13 "/usr/arm-none-eabi/include/sys/lock.h"
+ 1071              		.file 14 "/usr/arm-none-eabi/include/sys/_types.h"
+ 1072              		.file 15 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 1073              		.file 16 "/usr/arm-none-eabi/include/sys/reent.h"
+ 1074              		.file 17 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1075              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  /tmp/cc2KF724.s 			page 24
+
+
+ARM GAS  /tmp/cc2KF724.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sensors.c
+     /tmp/cc2KF724.s:18     .text.gyro_rw:0000000000000000 $t
+     /tmp/cc2KF724.s:26     .text.gyro_rw:0000000000000000 gyro_rw
+     /tmp/cc2KF724.s:137    .text.gyro_rw:000000000000007c $d
+     /tmp/cc2KF724.s:143    .text.init_gyro:0000000000000000 $t
+     /tmp/cc2KF724.s:151    .text.init_gyro:0000000000000000 init_gyro
+     /tmp/cc2KF724.s:522    .text.init_gyro:00000000000001e4 $d
+     /tmp/cc2KF724.s:528    .text.get_avel:0000000000000000 $t
+     /tmp/cc2KF724.s:536    .text.get_avel:0000000000000000 get_avel
+     /tmp/cc2KF724.s:778    .text.get_avel:0000000000000138 $d
+     /tmp/cc2KF724.s:784    .text.gyro_get_reference:0000000000000000 $t
+     /tmp/cc2KF724.s:792    .text.gyro_get_reference:0000000000000000 gyro_get_reference
+     /tmp/cc2KF724.s:1050   .text.gyro_get_reference:0000000000000140 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive
+hspi1
+HAL_Delay
+Flag_gyroEn

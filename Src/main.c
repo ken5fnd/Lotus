@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under BSD 3-Clause license,
+ * the "License"; You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at:
+ *                        opensource.org/licenses/BSD-3-Clause
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -29,9 +29,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "hardware/global.h"
+#include "hardware/init.h"
+#include "hardware/interface.h"
+#include "hardware/sensors.h"
 #include <stdint.h>
 #include <stdio.h>
-#include "hardware/interface.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,9 +63,7 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void __io_putchar(uint8_t ch) {
-	HAL_UART_Transmit(&huart1, &ch, 1, 1);
-}
+void __io_putchar(uint8_t ch) { HAL_UART_Transmit(&huart1, &ch, 1, 1); }
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -77,7 +78,7 @@ void __io_putchar(uint8_t ch) {
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+    volatile int16_t gyro_test[3];
   /* USER CODE END 1 */
   
 
@@ -105,36 +106,32 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM11_Init();
   MX_USART1_UART_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-  setbuf(stdout, NULL);
-  printf("hello! %f\n", 0.1);
-  Speaker_ON();
-  Speaker_Hz(1047);
-  HAL_Delay(100);
-  Speaker_Hz(2093);
-  HAL_Delay(500);
-  Speaker_OFF();
-  interface_LED(GREEN, GREEN);
-  HAL_Delay(500);
-  interface_LED(OFF, OFF);
-  HAL_Delay(50);
-  interface_LED(GREEN, GREEN);
-  HAL_Delay(50);
-  interface_LED(OFF, OFF);
-  HAL_Delay(50);
-  interface_LED(GREEN, GREEN);
-  HAL_Delay(500);
-  interface_LED(OFF, OFF);
+    setbuf(stdout, NULL);
+    init_val();
+    start_peripherals();
+    wakeup();
+    if(V_Batt < 3.7) {
+        error_battlowvoltage();
+    } else {
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+        while(1) {
+            gyro_test[0] = get_avel(0);
+            gyro_test[1] = get_avel(1);
+            gyro_test[2] = get_avel(2);
+            printf("X_OUT = %d,Y_OUT = %d,Z_OUT = %d\n", gyro_test[0],
+                   gyro_test[1], gyro_test[2]);
+            // printf("V_batt = %f\n",V_Batt);
+            HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+        }
+    }
   /* USER CODE END 3 */
 }
 
@@ -193,10 +190,10 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  while (1)
-  {
-  }
+    /* User can add his own implementation to report the HAL error return state
+     */
+    while(1) {
+    }
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -211,8 +208,9 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 { 
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+    /* User can add his own implementation to report the file name and line
+       number, tex: printf("Wrong parameters value: file %s on line %d\r\n",
+       file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
