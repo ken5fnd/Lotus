@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccD5ZKXN.s 			page 1
+ARM GAS  /tmp/cc1rYDgU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -18,31 +18,19 @@ ARM GAS  /tmp/ccD5ZKXN.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.comm	ADC_Buffer,10,4
-  18              		.comm	Flag_gyroEn,1,1
-  19              		.comm	V_Batt,4,4
-  20              		.comm	RESETState,48,4
-  21              		.comm	realState,48,4
-  22              		.comm	idealState,48,4
-  23              		.comm	IR_Sen,16,4
-  24              		.comm	IR_Sen_raw,8,4
-  25              	.Letext0:
-  26              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  27              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  28              		.file 3 "Inc/hardware/parameters.h"
-  29              		.file 4 "Inc/hardware/global.h"
-  30              		.file 5 "Src/hardware/global.c"
-ARM GAS  /tmp/ccD5ZKXN.s 			page 2
+  18              		.comm	offset_ang_vel,12,4
+  19              	.Letext0:
+  20              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  21              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  22              		.file 3 "Inc/hardware/parameters.h"
+  23              		.file 4 "Inc/hardware/global.h"
+  24              		.file 5 "Src/hardware/global.c"
+ARM GAS  /tmp/cc1rYDgU.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 global.c
                             *COM*:000000000000000a ADC_Buffer
-                            *COM*:0000000000000001 Flag_gyroEn
-                            *COM*:0000000000000004 V_Batt
-                            *COM*:0000000000000030 RESETState
-                            *COM*:0000000000000030 realState
-                            *COM*:0000000000000030 idealState
-                            *COM*:0000000000000010 IR_Sen
-                            *COM*:0000000000000008 IR_Sen_raw
+                            *COM*:000000000000000c offset_ang_vel
 
 NO UNDEFINED SYMBOLS

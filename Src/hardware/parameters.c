@@ -11,3 +11,5 @@
  __PID_Gain gain_wall_S_d;
  __PID_Gain gain_wall_F_R;
  __PID_Gain gain_wall_F_L;
+
+ __Coeff_Ang_Vel coeff_ang_vel;

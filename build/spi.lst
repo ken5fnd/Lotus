@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccB2A94F.s 			page 1
+ARM GAS  /tmp/ccOwnDrm.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
   28:Src/spi.c     **** 
   29:Src/spi.c     **** /* SPI1 init function */
   30:Src/spi.c     **** void MX_SPI1_Init(void)
-ARM GAS  /tmp/ccB2A94F.s 			page 2
+ARM GAS  /tmp/ccOwnDrm.s 			page 2
 
 
   31:Src/spi.c     **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
   63 0020 C3E90222 		strd	r2, r2, [r3, #8]
   38:Src/spi.c     ****   hspi1.Init.NSS = SPI_NSS_SOFT;
   64              		.loc 1 38 0
-ARM GAS  /tmp/ccB2A94F.s 			page 3
+ARM GAS  /tmp/ccOwnDrm.s 			page 3
 
 
   65 0024 C3E90422 		strd	r2, r2, [r3, #16]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
  110              	.LVL2:
  111 0000 70B5     		push	{r4, r5, r6, lr}
  112              	.LCFI2:
-ARM GAS  /tmp/ccB2A94F.s 			page 4
+ARM GAS  /tmp/ccOwnDrm.s 			page 4
 
 
  113              		.cfi_def_cfa_offset 16
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
  136 0018 08B0     		add	sp, sp, #32
  137              	.LCFI4:
  138              		.cfi_remember_state
-ARM GAS  /tmp/ccB2A94F.s 			page 5
+ARM GAS  /tmp/ccOwnDrm.s 			page 5
 
 
  139              		.cfi_def_cfa_offset 16
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
   64:Src/spi.c     ****     /**SPI1 GPIO Configuration    
  184              		.loc 1 64 0
  185 0052 029E     		ldr	r6, [sp, #8]
-ARM GAS  /tmp/ccB2A94F.s 			page 6
+ARM GAS  /tmp/ccOwnDrm.s 			page 6
 
 
  186              	.LBE5:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
   88:Src/spi.c     ****   /* USER CODE BEGIN SPI1_MspDeInit 0 */
   89:Src/spi.c     **** 
   90:Src/spi.c     ****   /* USER CODE END SPI1_MspDeInit 0 */
-ARM GAS  /tmp/ccB2A94F.s 			page 7
+ARM GAS  /tmp/ccOwnDrm.s 			page 7
 
 
   91:Src/spi.c     ****     /* Peripheral clock disable */
@@ -418,24 +418,24 @@ ARM GAS  /tmp/ccB2A94F.s 			page 1
  268              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
  269              		.file 11 "Inc/spi.h"
  270              		.file 12 "Inc/main.h"
-ARM GAS  /tmp/ccB2A94F.s 			page 8
+ARM GAS  /tmp/ccOwnDrm.s 			page 8
 
 
-ARM GAS  /tmp/ccB2A94F.s 			page 9
+ARM GAS  /tmp/ccOwnDrm.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 spi.c
-     /tmp/ccB2A94F.s:18     .text.MX_SPI1_Init:0000000000000000 $t
-     /tmp/ccB2A94F.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-     /tmp/ccB2A94F.s:90     .text.MX_SPI1_Init:0000000000000040 $d
+     /tmp/ccOwnDrm.s:18     .text.MX_SPI1_Init:0000000000000000 $t
+     /tmp/ccOwnDrm.s:26     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+     /tmp/ccOwnDrm.s:90     .text.MX_SPI1_Init:0000000000000040 $d
                             *COM*:0000000000000058 hspi1
-     /tmp/ccB2A94F.s:96     .text.HAL_SPI_MspInit:0000000000000000 $t
-     /tmp/ccB2A94F.s:104    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-     /tmp/ccB2A94F.s:205    .text.HAL_SPI_MspInit:0000000000000068 $d
-     /tmp/ccB2A94F.s:211    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-     /tmp/ccB2A94F.s:219    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-     /tmp/ccB2A94F.s:251    .text.HAL_SPI_MspDeInit:000000000000001c $d
+     /tmp/ccOwnDrm.s:96     .text.HAL_SPI_MspInit:0000000000000000 $t
+     /tmp/ccOwnDrm.s:104    .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+     /tmp/ccOwnDrm.s:205    .text.HAL_SPI_MspInit:0000000000000068 $d
+     /tmp/ccOwnDrm.s:211    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+     /tmp/ccOwnDrm.s:219    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+     /tmp/ccOwnDrm.s:251    .text.HAL_SPI_MspDeInit:000000000000001c $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

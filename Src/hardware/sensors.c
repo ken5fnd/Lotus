@@ -43,7 +43,7 @@ void init_gyro() {
     HAL_Delay(10);
 }
 
-int16_t get_avel(uint8_t _axis) {
+int16_t get_ang_vel(uint8_t _axis) {
     uint8_t Data_Input[] = {0x00, 0x00};
     uint8_t Data_Output[2];
     int16_t gyro_data;
@@ -86,7 +86,6 @@ int16_t gyro_get_reference() {
     uint8_t Data_Output[2];
     int16_t gyro_data;
     int32_t sum_data = 0;
-    Flag_gyroEn = 0;
     HAL_Delay(100);
     for(uint16_t i = 0; i < 1000; i++) {
         Data_Input[0] = GYRO_ZOUT_H;

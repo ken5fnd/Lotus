@@ -22,6 +22,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "hardware/global.h"
+#include "software/state.h"
 /* USER CODE END 0 */
 
 ADC_HandleTypeDef hadc1;
@@ -183,10 +184,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 /* USER CODE BEGIN 1 */
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
 
-    IR_Sen_raw.RF = ADC_Buffer[0];
-    IR_Sen_raw.RS = ADC_Buffer[1];
-    IR_Sen_raw.LS = ADC_Buffer[2];
-    IR_Sen_raw.LF = ADC_Buffer[3];
+    IR_sen_raw.RF = ADC_Buffer[0];
+    IR_sen_raw.RS = ADC_Buffer[1];
+    IR_sen_raw.LS = ADC_Buffer[2];
+    IR_sen_raw.LF = ADC_Buffer[3];
 
     V_Batt = (float)ADC_Buffer[4] * 3.0 / 4094.0 * 2.0;
 }

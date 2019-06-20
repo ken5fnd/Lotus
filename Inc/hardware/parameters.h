@@ -27,6 +27,7 @@ typedef struct {
     float ki; // Iゲイン
     float kd; // Dゲイン
 } __PID_Gain;
+
 extern __PID_Gain gain_vel;
 extern __PID_Gain gain_dis;
 extern __PID_Gain gain_avel;
@@ -55,5 +56,12 @@ typedef struct {
     __Turn_Parameter turn_135_O; //出口135度ターン
     __Turn_Parameter turn_v90;   //斜め90度ターン
 } __Attack_Parameters;
+
+typedef struct{
+    volatile float R;
+    volatile float L;
+} __Coeff_Ang_Vel;
+
+extern __Coeff_Ang_Vel coeff_ang_vel;
 
 #endif

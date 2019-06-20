@@ -6,4 +6,12 @@
     "C_Cpp.errorSquiggles": "Disabled",
 
     "C_Cpp.clang_format_style": "{ BasedOnStyle: LLVM, BreakBeforeBraces: Attach, SpaceBeforeParens: Never, IndentWidth: 4 }"
+    ,
+    "editor.tokenColorCustomizations":{
+        "comments": "#696969",
+        "functions":  {
+            "fontStyle": "bold"
+          },
+
+    }
 }

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccv4E9HQ.s 			page 1
+ARM GAS  /tmp/ccpYZyqe.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,25 +17,27 @@ ARM GAS  /tmp/ccv4E9HQ.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.comm	gain_wall_F_L,12,4
-  18              		.comm	gain_wall_F_R,12,4
-  19              		.comm	gain_wall_S_d,12,4
-  20              		.comm	gain_wall_S,12,4
-  21              		.comm	gain_deg,12,4
-  22              		.comm	gain_avel,12,4
-  23              		.comm	gain_dis,12,4
-  24              		.comm	gain_vel,12,4
-  25              		.comm	robot_parameters,24,4
-  26              	.Letext0:
-  27              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  28              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  29              		.file 3 "Inc/hardware/parameters.h"
-  30              		.file 4 "Src/hardware/parameters.c"
-ARM GAS  /tmp/ccv4E9HQ.s 			page 2
+  17              		.comm	coeff_ang_vel,8,4
+  18              		.comm	gain_wall_F_L,12,4
+  19              		.comm	gain_wall_F_R,12,4
+  20              		.comm	gain_wall_S_d,12,4
+  21              		.comm	gain_wall_S,12,4
+  22              		.comm	gain_deg,12,4
+  23              		.comm	gain_avel,12,4
+  24              		.comm	gain_dis,12,4
+  25              		.comm	gain_vel,12,4
+  26              		.comm	robot_parameters,24,4
+  27              	.Letext0:
+  28              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  29              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  30              		.file 3 "Inc/hardware/parameters.h"
+  31              		.file 4 "Src/hardware/parameters.c"
+ARM GAS  /tmp/ccpYZyqe.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 parameters.c
+                            *COM*:0000000000000008 coeff_ang_vel
                             *COM*:000000000000000c gain_wall_F_L
                             *COM*:000000000000000c gain_wall_F_R
                             *COM*:000000000000000c gain_wall_S_d

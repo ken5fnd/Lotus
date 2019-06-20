@@ -28,9 +28,11 @@ build/main.d: Src/main.c Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/adc.h \
- Inc/main.h Inc/dma.h Inc/spi.h Inc/tim.h Inc/usart.h Inc/gpio.h \
- Inc/hardware/global.h Inc/hardware/parameters.h Inc/hardware/init.h \
- Inc/hardware/interface.h Inc/hardware/sensors.h
+ Inc/main.h Inc/dma.h Inc/gpio.h Inc/spi.h Inc/tim.h Inc/usart.h \
+ Inc/hardware/global.h Inc/hardware/parameters.h \
+ Inc/hardware/hardware_flags.h Inc/hardware/init.h \
+ Inc/hardware/interface.h Inc/hardware/sensors.h \
+ Inc/software/software_flags.h Inc/software/state.h
 
 Inc/main.h:
 
@@ -102,20 +104,26 @@ Inc/main.h:
 
 Inc/dma.h:
 
+Inc/gpio.h:
+
 Inc/spi.h:
 
 Inc/tim.h:
 
 Inc/usart.h:
 
-Inc/gpio.h:
-
 Inc/hardware/global.h:
 
 Inc/hardware/parameters.h:
+
+Inc/hardware/hardware_flags.h:
 
 Inc/hardware/init.h:
 
 Inc/hardware/interface.h:
 
 Inc/hardware/sensors.h:
+
+Inc/software/software_flags.h:
+
+Inc/software/state.h:

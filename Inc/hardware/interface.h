@@ -14,9 +14,9 @@ enum LED_COLOR {
     WHITE = 7
 };
 
-enum SE_TYPE { OK1, OK2, NG, SELECT };
+enum SE_TYPE { OK1, OK2, OK3, NG, SELECT1, SELECT2 };
 
-void interface_LED(uint8_t _LED_R, uint8_t _LED_L);
+void interface_LED(uint8_t _LED_L, uint8_t _LED_R);
 void Speaker_ON();
 void Speaker_Hz(unsigned short _Hz);
 void Speaker_OFF();

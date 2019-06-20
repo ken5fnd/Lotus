@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCWUiRB.s 			page 1
+ARM GAS  /tmp/cc2mCGjh.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   28:Src/gpio.c    **** /*----------------------------------------------------------------------------*/
   29:Src/gpio.c    **** /* USER CODE BEGIN 1 */
   30:Src/gpio.c    **** 
-ARM GAS  /tmp/ccCWUiRB.s 			page 2
+ARM GAS  /tmp/cc2mCGjh.s 			page 2
 
 
   31:Src/gpio.c    **** /* USER CODE END 1 */
@@ -114,29 +114,26 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   44:Src/gpio.c    ****   __HAL_RCC_GPIOB_CLK_ENABLE();
   45:Src/gpio.c    **** 
   46:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  47:Src/gpio.c    ****   HAL_GPIO_WritePin(CS_ENC_R_GPIO_Port, CS_ENC_R_Pin, GPIO_PIN_RESET);
+  47:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOC, CS_ENC_R_Pin|LED_R_R_Pin|LED_R_G_Pin, GPIO_PIN_SET);
   64              		.loc 1 47 0
-  65 0018 4B4F     		ldr	r7, .L4+4
+  65 0018 DFF83481 		ldr	r8, .L4+12
   48:Src/gpio.c    **** 
-ARM GAS  /tmp/ccCWUiRB.s 			page 3
+ARM GAS  /tmp/cc2mCGjh.s 			page 3
 
 
   49:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  50:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOC, LED_R_R_Pin|LED_R_G_Pin, GPIO_PIN_SET);
+  50:Src/gpio.c    ****   HAL_GPIO_WritePin(LED_R_B_GPIO_Port, LED_R_B_Pin, GPIO_PIN_SET);
+  66              		.loc 1 50 0
+  67 001c DFF83491 		ldr	r9, .L4+16
   51:Src/gpio.c    **** 
   52:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  53:Src/gpio.c    ****   HAL_GPIO_WritePin(LED_R_B_GPIO_Port, LED_R_B_Pin, GPIO_PIN_SET);
-  66              		.loc 1 53 0
-  67 001a DFF83491 		ldr	r9, .L4+12
+  53:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOA, IRLED_RSLF_Pin|MOT_L_PH_Pin|MOT_R_PH_Pin, GPIO_PIN_RESET);
+  68              		.loc 1 53 0
+  69 0020 494F     		ldr	r7, .L4+4
   54:Src/gpio.c    **** 
   55:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  56:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOA, IRLED_RSLF_Pin|CS_ENC_L_Pin|MOT_L_PH_Pin|MOT_R_PH_Pin, GPIO_PIN_RESET);
-  68              		.loc 1 56 0
-  69 001e DFF83481 		ldr	r8, .L4+16
-  57:Src/gpio.c    **** 
-  58:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  59:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOB, IRLED_RFLS_Pin|CS_GYRO_Pin, GPIO_PIN_RESET);
-  70              		.loc 1 59 0
+  56:Src/gpio.c    ****   HAL_GPIO_WritePin(IRLED_RFLS_GPIO_Port, IRLED_RFLS_Pin, GPIO_PIN_RESET);
+  70              		.loc 1 56 0
   71 0022 4A4E     		ldr	r6, .L4+8
   72              	.LBB4:
   41:Src/gpio.c    ****   __HAL_RCC_GPIOH_CLK_ENABLE();
@@ -178,19 +175,19 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  105 005c 0494     		str	r4, [sp, #16]
  106 005e 1A6B     		ldr	r2, [r3, #48]
  107 0060 42F00202 		orr	r2, r2, #2
-ARM GAS  /tmp/ccCWUiRB.s 			page 4
-
-
  108 0064 1A63     		str	r2, [r3, #48]
  109 0066 1B6B     		ldr	r3, [r3, #48]
  110 0068 03F00203 		and	r3, r3, #2
+ARM GAS  /tmp/cc2mCGjh.s 			page 4
+
+
  111 006c 0493     		str	r3, [sp, #16]
  112              	.LBE7:
   47:Src/gpio.c    **** 
  113              		.loc 1 47 0
- 114 006e 2246     		mov	r2, r4
- 115 0070 3846     		mov	r0, r7
- 116 0072 4FF40051 		mov	r1, #8192
+ 114 006e 4046     		mov	r0, r8
+ 115 0070 0122     		movs	r2, #1
+ 116 0072 4FF46041 		mov	r1, #57344
  117              	.LBB8:
   44:Src/gpio.c    **** 
  118              		.loc 1 44 0
@@ -202,46 +199,48 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  123              	.LVL0:
   50:Src/gpio.c    **** 
  124              		.loc 1 50 0
- 125 007c 3846     		mov	r0, r7
- 126 007e 0122     		movs	r2, #1
- 127 0080 4FF44041 		mov	r1, #49152
- 128 0084 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 125 007c 0122     		movs	r2, #1
+ 126 007e 4846     		mov	r0, r9
+ 127 0080 1146     		mov	r1, r2
+ 128 0082 FFF7FEFF 		bl	HAL_GPIO_WritePin
  129              	.LVL1:
   53:Src/gpio.c    **** 
  130              		.loc 1 53 0
- 131 0088 0122     		movs	r2, #1
- 132 008a 4846     		mov	r0, r9
- 133 008c 1146     		mov	r1, r2
+ 131 0086 2246     		mov	r2, r4
+ 132 0088 3846     		mov	r0, r7
+ 133 008a 4CF20401 		movw	r1, #49156
  134 008e FFF7FEFF 		bl	HAL_GPIO_WritePin
  135              	.LVL2:
-  56:Src/gpio.c    **** 
  136              		.loc 1 56 0
  137 0092 2246     		mov	r2, r4
- 138 0094 4046     		mov	r0, r8
- 139 0096 4EF20401 		movw	r1, #57348
+ 138 0094 3046     		mov	r0, r6
+ 139 0096 4FF48051 		mov	r1, #4096
  140 009a FFF7FEFF 		bl	HAL_GPIO_WritePin
  141              	.LVL3:
+  57:Src/gpio.c    **** 
+  58:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
+  59:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOB, LED_L_R_Pin|LED_L_G_Pin|LED_L_B_Pin|CS_GYRO_Pin, GPIO_PIN_SET);
  142              		.loc 1 59 0
- 143 009e 2246     		mov	r2, r4
- 144 00a0 3046     		mov	r0, r6
- 145 00a2 4FF48851 		mov	r1, #4352
+ 143 009e 3046     		mov	r0, r6
+ 144 00a0 0122     		movs	r2, #1
+ 145 00a2 4FF46141 		mov	r1, #57600
  146 00a6 FFF7FEFF 		bl	HAL_GPIO_WritePin
  147              	.LVL4:
   60:Src/gpio.c    **** 
   61:Src/gpio.c    ****   /*Configure GPIO pin Output Level */
-  62:Src/gpio.c    ****   HAL_GPIO_WritePin(GPIOB, LED_L_R_Pin|LED_L_G_Pin|LED_L_B_Pin, GPIO_PIN_SET);
+  62:Src/gpio.c    ****   HAL_GPIO_WritePin(CS_ENC_L_GPIO_Port, CS_ENC_L_Pin, GPIO_PIN_SET);
  148              		.loc 1 62 0
  149 00aa 0122     		movs	r2, #1
- 150 00ac 3046     		mov	r0, r6
- 151 00ae 4FF46041 		mov	r1, #57344
+ 150 00ac 3846     		mov	r0, r7
+ 151 00ae 4FF40051 		mov	r1, #8192
  152 00b2 FFF7FEFF 		bl	HAL_GPIO_WritePin
  153              	.LVL5:
   63:Src/gpio.c    **** 
   64:Src/gpio.c    ****   /*Configure GPIO pin : PtPin */
-ARM GAS  /tmp/ccCWUiRB.s 			page 5
-
-
   65:Src/gpio.c    ****   GPIO_InitStruct.Pin = CS_ENC_R_Pin;
+ARM GAS  /tmp/cc2mCGjh.s 			page 5
+
+
   66:Src/gpio.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  154              		.loc 1 66 0
  155 00b6 0125     		movs	r5, #1
@@ -253,7 +252,7 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   69:Src/gpio.c    ****   HAL_GPIO_Init(CS_ENC_R_GPIO_Port, &GPIO_InitStruct);
  158              		.loc 1 69 0
  159 00bc 05A9     		add	r1, sp, #20
- 160 00be 3846     		mov	r0, r7
+ 160 00be 4046     		mov	r0, r8
   68:Src/gpio.c    ****   HAL_GPIO_Init(CS_ENC_R_GPIO_Port, &GPIO_InitStruct);
  161              		.loc 1 68 0
  162 00c0 0894     		str	r4, [sp, #32]
@@ -276,7 +275,7 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   75:Src/gpio.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   76:Src/gpio.c    ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  172              		.loc 1 76 0
- 173 00d0 3846     		mov	r0, r7
+ 173 00d0 4046     		mov	r0, r8
  174 00d2 05A9     		add	r1, sp, #20
   72:Src/gpio.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  175              		.loc 1 72 0
@@ -298,10 +297,10 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   82:Src/gpio.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   83:Src/gpio.c    ****   HAL_GPIO_Init(LED_R_B_GPIO_Port, &GPIO_InitStruct);
  184              		.loc 1 83 0
-ARM GAS  /tmp/ccCWUiRB.s 			page 6
-
-
  185 00e0 4846     		mov	r0, r9
+ARM GAS  /tmp/cc2mCGjh.s 			page 6
+
+
  186 00e2 05A9     		add	r1, sp, #20
   80:Src/gpio.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
  187              		.loc 1 80 0
@@ -321,7 +320,7 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
   90:Src/gpio.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
  194              		.loc 1 90 0
  195 00f0 05A9     		add	r1, sp, #20
- 196 00f2 4046     		mov	r0, r8
+ 196 00f2 3846     		mov	r0, r7
   86:Src/gpio.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  197              		.loc 1 86 0
  198 00f4 4CF20403 		movw	r3, #49156
@@ -358,10 +357,10 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  217 0112 0894     		str	r4, [sp, #32]
  218              		.loc 1 97 0
  219 0114 FFF7FEFF 		bl	HAL_GPIO_Init
-ARM GAS  /tmp/ccCWUiRB.s 			page 7
-
-
  220              	.LVL10:
+ARM GAS  /tmp/cc2mCGjh.s 			page 7
+
+
   98:Src/gpio.c    **** 
   99:Src/gpio.c    ****   /*Configure GPIO pin : PtPin */
  100:Src/gpio.c    ****   GPIO_InitStruct.Pin = CS_ENC_L_Pin;
@@ -370,7 +369,7 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  103:Src/gpio.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  104:Src/gpio.c    ****   HAL_GPIO_Init(CS_ENC_L_GPIO_Port, &GPIO_InitStruct);
  221              		.loc 1 104 0
- 222 0118 4046     		mov	r0, r8
+ 222 0118 3846     		mov	r0, r7
  223 011a 05A9     		add	r1, sp, #20
  101:Src/gpio.c    ****   GPIO_InitStruct.Pull = GPIO_PULLUP;
  224              		.loc 1 101 0
@@ -417,13 +416,13 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  252 0142 00BF     		.align	2
  253              	.L4:
  254 0144 00380240 		.word	1073887232
- 255 0148 00080240 		.word	1073874944
-ARM GAS  /tmp/ccCWUiRB.s 			page 8
-
-
+ 255 0148 00000240 		.word	1073872896
  256 014c 00040240 		.word	1073873920
- 257 0150 001C0240 		.word	1073880064
- 258 0154 00000240 		.word	1073872896
+ARM GAS  /tmp/cc2mCGjh.s 			page 8
+
+
+ 257 0150 00080240 		.word	1073874944
+ 258 0154 001C0240 		.word	1073880064
  259              		.cfi_endproc
  260              	.LFE130:
  262              		.text
@@ -434,14 +433,14 @@ ARM GAS  /tmp/ccCWUiRB.s 			page 1
  267              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
  268              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f413xx.h"
  269              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
-ARM GAS  /tmp/ccCWUiRB.s 			page 9
+ARM GAS  /tmp/cc2mCGjh.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gpio.c
-     /tmp/ccCWUiRB.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccCWUiRB.s:26     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccCWUiRB.s:254    .text.MX_GPIO_Init:0000000000000144 $d
+     /tmp/cc2mCGjh.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/cc2mCGjh.s:26     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/cc2mCGjh.s:254    .text.MX_GPIO_Init:0000000000000144 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccQV1PIs.s 			page 1
+ARM GAS  /tmp/ccSTlIEn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
   29              		.loc 1 27 0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccQV1PIs.s 			page 2
+ARM GAS  /tmp/ccSTlIEn.s 			page 2
 
 
   32              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
   36:Src/syscall.c **** 	return -1;
   37:Src/syscall.c **** }
   82              		.loc 1 37 0
-ARM GAS  /tmp/ccQV1PIs.s 			page 3
+ARM GAS  /tmp/ccSTlIEn.s 			page 3
 
 
   83 0006 4FF0FF30 		mov	r0, #-1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  138              	.LFB23:
   40:Src/syscall.c **** 	_kill(status, -1);
   41:Src/syscall.c **** 	while (1) {
-ARM GAS  /tmp/ccQV1PIs.s 			page 4
+ARM GAS  /tmp/ccSTlIEn.s 			page 4
 
 
   42:Src/syscall.c **** 	} /* Make sure we hang here */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  179              		.global	_sbrk
  180              		.syntax unified
  181              		.thumb
-ARM GAS  /tmp/ccQV1PIs.s 			page 5
+ARM GAS  /tmp/ccSTlIEn.s 			page 5
 
 
  182              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  215 0016 0C22     		movs	r2, #12
  216 0018 1A60     		str	r2, [r3]
   70:Src/syscall.c **** 	}
-ARM GAS  /tmp/ccQV1PIs.s 			page 6
+ARM GAS  /tmp/ccSTlIEn.s 			page 6
 
 
  217              		.loc 1 70 0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  270              	_fstat:
  271              	.LFB26:
   81:Src/syscall.c **** 
-ARM GAS  /tmp/ccQV1PIs.s 			page 7
+ARM GAS  /tmp/ccSTlIEn.s 			page 7
 
 
   82:Src/syscall.c **** int _fstat(int file, struct stat *st) {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  322              	.LFB28:
   90:Src/syscall.c **** 
   91:Src/syscall.c **** int _lseek(int file, int ptr, int dir) {
-ARM GAS  /tmp/ccQV1PIs.s 			page 8
+ARM GAS  /tmp/ccSTlIEn.s 			page 8
 
 
  323              		.loc 1 91 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  373              		@ args = 4, pretend = 12, frame = 0
  374              		@ frame_needed = 0, uses_anonymous_args = 1
  375              		@ link register save eliminated.
-ARM GAS  /tmp/ccQV1PIs.s 			page 9
+ARM GAS  /tmp/ccSTlIEn.s 			page 9
 
 
  376              	.LVL24:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  424 000c 00000000 		.word	errno
  425              		.cfi_endproc
  426              	.LFE31:
-ARM GAS  /tmp/ccQV1PIs.s 			page 10
+ARM GAS  /tmp/ccSTlIEn.s 			page 10
 
 
  428              		.section	.text._unlink,"ax",%progbits
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  116:Src/syscall.c **** }
  477              		.loc 1 116 0
  478 0000 4FF0FF30 		mov	r0, #-1
-ARM GAS  /tmp/ccQV1PIs.s 			page 11
+ARM GAS  /tmp/ccSTlIEn.s 			page 11
 
 
  479              	.LVL31:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  529 0000 024B     		ldr	r3, .L40
  530 0002 1F22     		movs	r2, #31
  531 0004 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccQV1PIs.s 			page 12
+ARM GAS  /tmp/ccSTlIEn.s 			page 12
 
 
  125:Src/syscall.c **** 	return -1;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  583              	.LFB37:
  132:Src/syscall.c **** 
  133:Src/syscall.c **** int _execve(char *name, char **argv, char **env) {
-ARM GAS  /tmp/ccQV1PIs.s 			page 13
+ARM GAS  /tmp/ccSTlIEn.s 			page 13
 
 
  584              		.loc 1 133 0
@@ -774,67 +774,67 @@ ARM GAS  /tmp/ccQV1PIs.s 			page 1
  638              		.file 11 "/usr/arm-none-eabi/include/stdlib.h"
  639              		.file 12 "/usr/arm-none-eabi/include/sys/errno.h"
  640              		.file 13 "/usr/arm-none-eabi/include/sys/times.h"
-ARM GAS  /tmp/ccQV1PIs.s 			page 14
+ARM GAS  /tmp/ccSTlIEn.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscall.c
-     /tmp/ccQV1PIs.s:18     .text.initialise_monitor_handles:0000000000000000 $t
-     /tmp/ccQV1PIs.s:26     .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
-     /tmp/ccQV1PIs.s:40     .text._getpid:0000000000000000 $t
-     /tmp/ccQV1PIs.s:48     .text._getpid:0000000000000000 _getpid
-     /tmp/ccQV1PIs.s:62     .text._kill:0000000000000000 $t
-     /tmp/ccQV1PIs.s:70     .text._kill:0000000000000000 _kill
-     /tmp/ccQV1PIs.s:89     .text._kill:000000000000000c $d
-     /tmp/ccQV1PIs.s:94     .text._exit:0000000000000000 $t
-     /tmp/ccQV1PIs.s:102    .text._exit:0000000000000000 _exit
-     /tmp/ccQV1PIs.s:122    .text._exit:0000000000000008 $d
-     /tmp/ccQV1PIs.s:129    .text._write:0000000000000000 $t
-     /tmp/ccQV1PIs.s:137    .text._write:0000000000000000 _write
-     /tmp/ccQV1PIs.s:177    .text._sbrk:0000000000000000 $t
-     /tmp/ccQV1PIs.s:185    .text._sbrk:0000000000000000 _sbrk
-     /tmp/ccQV1PIs.s:231    .text._sbrk:0000000000000028 $d
-     /tmp/ccQV1PIs.s:238    .text._close:0000000000000000 $t
-     /tmp/ccQV1PIs.s:246    .text._close:0000000000000000 _close
-     /tmp/ccQV1PIs.s:262    .text._fstat:0000000000000000 $t
-     /tmp/ccQV1PIs.s:270    .text._fstat:0000000000000000 _fstat
-     /tmp/ccQV1PIs.s:289    .text._isatty:0000000000000000 $t
-     /tmp/ccQV1PIs.s:297    .text._isatty:0000000000000000 _isatty
-     /tmp/ccQV1PIs.s:313    .text._lseek:0000000000000000 $t
-     /tmp/ccQV1PIs.s:321    .text._lseek:0000000000000000 _lseek
-     /tmp/ccQV1PIs.s:337    .text._read:0000000000000000 $t
-     /tmp/ccQV1PIs.s:345    .text._read:0000000000000000 _read
-     /tmp/ccQV1PIs.s:361    .text._open:0000000000000000 $t
-     /tmp/ccQV1PIs.s:369    .text._open:0000000000000000 _open
-     /tmp/ccQV1PIs.s:397    .text._wait:0000000000000000 $t
-     /tmp/ccQV1PIs.s:405    .text._wait:0000000000000000 _wait
-     /tmp/ccQV1PIs.s:424    .text._wait:000000000000000c $d
-     /tmp/ccQV1PIs.s:429    .text._unlink:0000000000000000 $t
-     /tmp/ccQV1PIs.s:437    .text._unlink:0000000000000000 _unlink
-     /tmp/ccQV1PIs.s:456    .text._unlink:000000000000000c $d
-     /tmp/ccQV1PIs.s:461    .text._times:0000000000000000 $t
-     /tmp/ccQV1PIs.s:469    .text._times:0000000000000000 _times
-     /tmp/ccQV1PIs.s:485    .text._stat:0000000000000000 $t
-     /tmp/ccQV1PIs.s:493    .text._stat:0000000000000000 _stat
-     /tmp/ccQV1PIs.s:512    .text._link:0000000000000000 $t
-     /tmp/ccQV1PIs.s:520    .text._link:0000000000000000 _link
-     /tmp/ccQV1PIs.s:539    .text._link:000000000000000c $d
-     /tmp/ccQV1PIs.s:544    .text._fork:0000000000000000 $t
-     /tmp/ccQV1PIs.s:552    .text._fork:0000000000000000 _fork
-     /tmp/ccQV1PIs.s:569    .text._fork:000000000000000c $d
-     /tmp/ccQV1PIs.s:574    .text._execve:0000000000000000 $t
-     /tmp/ccQV1PIs.s:582    .text._execve:0000000000000000 _execve
-     /tmp/ccQV1PIs.s:602    .text._execve:000000000000000c $d
-     /tmp/ccQV1PIs.s:625    .data.environ:0000000000000000 environ
-     /tmp/ccQV1PIs.s:612    .bss.__env:0000000000000000 __env
-     /tmp/ccQV1PIs.s:609    .bss.__env:0000000000000000 $d
-     /tmp/ccQV1PIs.s:615    .bss.heap_end.7223:0000000000000000 $d
-     /tmp/ccQV1PIs.s:619    .bss.heap_end.7223:0000000000000000 heap_end.7223
-     /tmp/ccQV1PIs.s:622    .data.environ:0000000000000000 $d
+     /tmp/ccSTlIEn.s:18     .text.initialise_monitor_handles:0000000000000000 $t
+     /tmp/ccSTlIEn.s:26     .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
+     /tmp/ccSTlIEn.s:40     .text._getpid:0000000000000000 $t
+     /tmp/ccSTlIEn.s:48     .text._getpid:0000000000000000 _getpid
+     /tmp/ccSTlIEn.s:62     .text._kill:0000000000000000 $t
+     /tmp/ccSTlIEn.s:70     .text._kill:0000000000000000 _kill
+     /tmp/ccSTlIEn.s:89     .text._kill:000000000000000c $d
+     /tmp/ccSTlIEn.s:94     .text._exit:0000000000000000 $t
+     /tmp/ccSTlIEn.s:102    .text._exit:0000000000000000 _exit
+     /tmp/ccSTlIEn.s:122    .text._exit:0000000000000008 $d
+     /tmp/ccSTlIEn.s:129    .text._write:0000000000000000 $t
+     /tmp/ccSTlIEn.s:137    .text._write:0000000000000000 _write
+     /tmp/ccSTlIEn.s:177    .text._sbrk:0000000000000000 $t
+     /tmp/ccSTlIEn.s:185    .text._sbrk:0000000000000000 _sbrk
+     /tmp/ccSTlIEn.s:231    .text._sbrk:0000000000000028 $d
+     /tmp/ccSTlIEn.s:238    .text._close:0000000000000000 $t
+     /tmp/ccSTlIEn.s:246    .text._close:0000000000000000 _close
+     /tmp/ccSTlIEn.s:262    .text._fstat:0000000000000000 $t
+     /tmp/ccSTlIEn.s:270    .text._fstat:0000000000000000 _fstat
+     /tmp/ccSTlIEn.s:289    .text._isatty:0000000000000000 $t
+     /tmp/ccSTlIEn.s:297    .text._isatty:0000000000000000 _isatty
+     /tmp/ccSTlIEn.s:313    .text._lseek:0000000000000000 $t
+     /tmp/ccSTlIEn.s:321    .text._lseek:0000000000000000 _lseek
+     /tmp/ccSTlIEn.s:337    .text._read:0000000000000000 $t
+     /tmp/ccSTlIEn.s:345    .text._read:0000000000000000 _read
+     /tmp/ccSTlIEn.s:361    .text._open:0000000000000000 $t
+     /tmp/ccSTlIEn.s:369    .text._open:0000000000000000 _open
+     /tmp/ccSTlIEn.s:397    .text._wait:0000000000000000 $t
+     /tmp/ccSTlIEn.s:405    .text._wait:0000000000000000 _wait
+     /tmp/ccSTlIEn.s:424    .text._wait:000000000000000c $d
+     /tmp/ccSTlIEn.s:429    .text._unlink:0000000000000000 $t
+     /tmp/ccSTlIEn.s:437    .text._unlink:0000000000000000 _unlink
+     /tmp/ccSTlIEn.s:456    .text._unlink:000000000000000c $d
+     /tmp/ccSTlIEn.s:461    .text._times:0000000000000000 $t
+     /tmp/ccSTlIEn.s:469    .text._times:0000000000000000 _times
+     /tmp/ccSTlIEn.s:485    .text._stat:0000000000000000 $t
+     /tmp/ccSTlIEn.s:493    .text._stat:0000000000000000 _stat
+     /tmp/ccSTlIEn.s:512    .text._link:0000000000000000 $t
+     /tmp/ccSTlIEn.s:520    .text._link:0000000000000000 _link
+     /tmp/ccSTlIEn.s:539    .text._link:000000000000000c $d
+     /tmp/ccSTlIEn.s:544    .text._fork:0000000000000000 $t
+     /tmp/ccSTlIEn.s:552    .text._fork:0000000000000000 _fork
+     /tmp/ccSTlIEn.s:569    .text._fork:000000000000000c $d
+     /tmp/ccSTlIEn.s:574    .text._execve:0000000000000000 $t
+     /tmp/ccSTlIEn.s:582    .text._execve:0000000000000000 _execve
+     /tmp/ccSTlIEn.s:602    .text._execve:000000000000000c $d
+     /tmp/ccSTlIEn.s:625    .data.environ:0000000000000000 environ
+     /tmp/ccSTlIEn.s:612    .bss.__env:0000000000000000 __env
+     /tmp/ccSTlIEn.s:609    .bss.__env:0000000000000000 $d
+     /tmp/ccSTlIEn.s:615    .bss.heap_end.7223:0000000000000000 $d
+     /tmp/ccSTlIEn.s:619    .bss.heap_end.7223:0000000000000000 heap_end.7223
+     /tmp/ccSTlIEn.s:622    .data.environ:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 errno
-ARM GAS  /tmp/ccQV1PIs.s 			page 15
+ARM GAS  /tmp/ccSTlIEn.s 			page 15
 
 
 __io_putchar

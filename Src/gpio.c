@@ -44,22 +44,22 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(CS_ENC_R_GPIO_Port, CS_ENC_R_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED_R_R_Pin|LED_R_G_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, CS_ENC_R_Pin|LED_R_R_Pin|LED_R_G_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_R_B_GPIO_Port, LED_R_B_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, IRLED_RSLF_Pin|CS_ENC_L_Pin|MOT_L_PH_Pin|MOT_R_PH_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, IRLED_RSLF_Pin|MOT_L_PH_Pin|MOT_R_PH_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, IRLED_RFLS_Pin|CS_GYRO_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(IRLED_RFLS_GPIO_Port, IRLED_RFLS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED_L_R_Pin|LED_L_G_Pin|LED_L_B_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOB, LED_L_R_Pin|LED_L_G_Pin|LED_L_B_Pin|CS_GYRO_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(CS_ENC_L_GPIO_Port, CS_ENC_L_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : PtPin */
   GPIO_InitStruct.Pin = CS_ENC_R_Pin;
